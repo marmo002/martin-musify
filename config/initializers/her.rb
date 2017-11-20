@@ -1,4 +1,4 @@
-Her::API.setup url: "https://api.example.com" do |c|
+Her::API.setup url: "https://app.ticketmaster.com/discovery/v2/events.json?apikey=SezXKF8hYiQwriEyIirXVxqAoQO1KQLw&city=Toronto" do |c|
   # Request
   c.use Faraday::Request::UrlEncoded
 
@@ -9,4 +9,4 @@ Her::API.setup url: "https://api.example.com" do |c|
   c.use Faraday::Adapter::NetHttp
 end
 
-# need to setup the songkick API
+# need to setup the ticketmaster API
