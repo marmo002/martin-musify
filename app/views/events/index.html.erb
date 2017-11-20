@@ -1,0 +1,12 @@
+<h1>Events</h1>
+
+<%# @events.each do |event| %>
+  <%#= event %>
+<%# end %>
+<pre>
+  <% @events = TicketmasterAPI.new%>
+  <%= @events.to_h.to_yaml%>
+  <%# response.each do |key, value| %>
+    <%#= key %>
+  <%# end %>
+</pre>
