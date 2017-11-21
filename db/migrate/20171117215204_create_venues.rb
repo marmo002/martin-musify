@@ -9,6 +9,7 @@ class CreateVenues < ActiveRecord::Migration[5.1]
       t.string :postal_code, null: false
       t.string :country
       t.string :phone_number
+      t.string :tm_id
 
       t.timestamps
     end
