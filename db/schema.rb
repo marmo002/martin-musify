@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20171120233423) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
+    t.string "tm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 20171120233423) do
     t.string "postal_code", null: false
     t.string "country"
     t.string "phone_number"
+    t.string "tm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
