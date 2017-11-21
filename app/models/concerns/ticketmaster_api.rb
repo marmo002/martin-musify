@@ -11,6 +11,20 @@ class TicketmasterAPI
     @events = @response.to_h['_embedded']['events']
   end
 
+  def create_artists
+    events.each do |event|
+      # begin
+      Artist.create(
+        name: event['_embedded'] && event['_embedded']['attractions'][0]['name'],
+        tm_id: event['_embedded'] && event['_embedded']['attractions'][0]['id'],
+      )
+      # rescue
+      #   binding.pry
+      # end
+
+    end
+  end
+
   def create_events
     events.each do |event|
         Event.create(
@@ -22,5 +36,7 @@ class TicketmasterAPI
         )
     end
   end
+
+
 
 end
