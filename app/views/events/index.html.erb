@@ -1,10 +1,16 @@
 <h1>Events</h1>
 
-<% @events.each do |event| %>
-  <ul>
-    <li>
-      <%= event.name %>
-      <%#= event.artist.name %>
-    </li>
-  </ul>
-<% end %>
+<div class="card-deck">
+  <% @events.each do |event| %>
+  <div class="col-3">
+    <div class="card">
+      <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+      <div class="card-body">
+        <h4 class="card-title"><%= event.name %></h4>
+        <!-- <p class="card-text"></p> -->
+        <p class="card-text"><small class="text-muted"><%= event.date %></small></p>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
