@@ -1,6 +1,20 @@
 class TicketmasterAPI
   def initialize
-    @response = HTTParty.get('https://app.ticketmaster.com/discovery/v2/events.json?apikey=SezXKF8hYiQwriEyIirXVxqAoQO1KQLw&city=Toronto&classificationName=music&size=50')
+    @path = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=SezXKF8hYiQwriEyIirXVxqAoQO1KQLw&city=Toronto&classificationName=music&page=1&size=50'
+  end
+
+  def fetch_paginated_data(path)
+    loop do
+      page = 1
+      @response = HTTParty.get("#{path}&page=#{page}")
+      if @response.success?
+        @response.map { |item| yielder << item }
+        page += 1
+      else
+        raise StopIteration
+      end
+    end
+    @response
   end
 
   def to_h
@@ -49,26 +63,26 @@ class TicketmasterAPI
   end
 
       def create_venues
-    events.each do |event|
-      # begin
-      if !Venue.find_by(tm_id: event['_embedded']['venues'][0]['id'])
-        Venue.create(
-          name: event['_embedded']['venues'][0]['name'],
-          address_1: event['_embedded']['venues'][0]['address']['line1'],
-          address_2: event['_embedded']['venues'][0]['address']['line2'],
-          city: event['_embedded']['venues'][0]['city']['name'],
-          province: event['_embedded']['venues'][0]['state']['name'],
-          postal_code: event['_embedded']['venues'][0]['postalCode'],
-          country: event['_embedded']['venues'][0]['country']['name'],
-          phone_number: event['_embedded']['venues'][0]['boxOfficeInfo'] && event['_embedded']['venues'][0]['boxOfficeInfo']['phoneNumberDetail'],
-          tm_id: event['_embedded']['venues'][0]['id']
-      
-      end
+        events.each do |event|
+          # begin
+          if !Venue.find_by(tm_id: event['_embedded']['venues'][0]['id'])
+            Venue.create(
+              name: event['_embedded']['venues'][0]['name'],
+              address_1: event['_embedded']['venues'][0]['address']['line1'],
+              address_2: event['_embedded']['venues'][0]['address']['line2'],
+              city: event['_embedded']['venues'][0]['city']['name'],
+              province: event['_embedded']['venues'][0]['state']['name'],
+              postal_code: event['_embedded']['venues'][0]['postalCode'],
+              country: event['_embedded']['venues'][0]['country']['name'],
+              phone_number: event['_embedded']['venues'][0]['boxOfficeInfo'] && event['_embedded']['venues'][0]['boxOfficeInfo']['phoneNumberDetail'],
+              tm_id: event['_embedded']['venues'][0]['id']
+            )
+          end
       # rescue
       #   binding.pry
       # end
+        end
     end
-  end
 
   def create_genres
     events.each do |event|
@@ -87,6 +101,7 @@ class TicketmasterAPI
 
 
   def create_events
+
     events.each do |event|
       if !Event.find_by(tm_id: event['id'])
           Event.create(
