@@ -1,2 +1,24 @@
 <h1>Artists#show</h1>
-<p>Find me in app/views/artists/show.html.erb</p>
+
+<hr>
+
+<ul>
+  <li>Name: <%= @artist.name %></li>
+  <% if @artist.website %>
+  <li>website: <%= @artist.website %></li>
+  <% end %>
+
+  <% if @artist.twitter %>
+    <li>twitter: <%= @artist.twitter %></li>
+  <% end %>
+
+  <% if @artist.youtube %>
+    <li>youtube: <%= @artist.youtube %></li>
+  <% end %>
+  <% if @artist.facebook %>
+    <li>facebook: <%= @artist.facebook %></li>
+  <% end %>
+  <% if @artist.instragram %>
+  <li>instagram: <%= @artist.instragram %></li>
+  <% end %>
+</ul>
