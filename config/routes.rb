@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 root "events#index"
 resources :events, only: [:index, :show]
 resources :venues, only: [:index, :show]
-resources :artists, only: [:show]
+resources :artists, only: [:index, :show]
 
 end
