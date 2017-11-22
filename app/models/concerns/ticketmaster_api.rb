@@ -1,5 +1,4 @@
 class TicketmasterAPI
-
   def get_all_results
     url = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=SezXKF8hYiQwriEyIirXVxqAoQO1KQLw&city=Toronto&classificationName=music&size=200"
     @result = HTTParty.get(url)
@@ -22,9 +21,29 @@ class TicketmasterAPI
       page.each do |event|
         if event['_embedded']['attractions'] && !Artist.find_by(tm_id: event['_embedded']['attractions'][0]['id'])
           Artist.create(
-            name: event['_embedded'] && event['_embedded']['attractions'][0]['name'],
-            tm_id: event['_embedded'] && event['_embedded']['attractions'][0]['id'],
-          )
+            name: event['_embedded']['attractions'][0]['name'],
+            tm_id: event['_embedded']['attractions'][0]['id'],
+            website: event['_embedded']['attractions'] &&
+            event['_embedded']['attractions'][0]['externalLinks'] &&
+            event['_embedded']['attractions'][0]['externalLinks']['homepage'] &&
+            event['_embedded']['attractions'][0]['externalLinks']['homepage'][0]['url'],
+            twitter: event['_embedded']['attractions'] &&
+            event['_embedded']['attractions'][0]['externalLinks'] &&
+            event['_embedded']['attractions'][0]['externalLinks']['twitter'] &&
+            event['_embedded']['attractions'][0]['externalLinks']['twitter'][0]['url'],
+            youtube:  event['_embedded']['attractions'] &&
+            event['_embedded']['attractions'][0]['externalLinks'] &&
+            event['_embedded']['attractions'][0]['externalLinks']['youtube'] &&
+            event['_embedded']['attractions'][0]['externalLinks']['youtube'][0]['url'],
+            facebook:  event['_embedded']['attractions'] &&
+            event['_embedded']['attractions'][0]['externalLinks'] &&
+            event['_embedded']['attractions'][0]['externalLinks']['facebook'] &&
+            event['_embedded']['attractions'][0]['externalLinks']['facebook'][0]['url'],
+            instragram:  event['_embedded']['attractions'] &&
+            event['_embedded']['attractions'][0]['externalLinks'] &&
+            event['_embedded']['attractions'][0]['externalLinks']['instagram'] &&
+            event['_embedded']['attractions'][0]['externalLinks']['instagram'][0]['url'],
+              )
         end
       end
     end
@@ -34,6 +53,7 @@ class TicketmasterAPI
     @response = get_all_results
     @response.each do |page|
       page.each do |event|
+
         if !Venue.find_by(tm_id: event['_embedded']['venues'][0]['id'])
           Venue.create(
             name: event['_embedded']['venues'][0]['name'],
