@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120233423) do
+ActiveRecord::Schema.define(version: 20171123191731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "artists", force: :cascade do |t|
+    t.string "artist_tm_id"
     t.string "name"
     t.string "website"
     t.string "twitter"
@@ -25,34 +26,41 @@ ActiveRecord::Schema.define(version: 20171120233423) do
     t.string "spotify"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "tm_id"
+  end
+
+  create_table "artists_genres", id: false, force: :cascade do |t|
+    t.bigint "artist_id"
+    t.bigint "genre_id"
+    t.index ["artist_id"], name: "index_artists_genres_on_artist_id"
+    t.index ["genre_id"], name: "index_artists_genres_on_genre_id"
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "tm_id"
+    t.string "event_tm_id"
     t.string "name", null: false
     t.datetime "date"
-    t.string "venue_id"
-    t.string "artist_id"
+    t.string "venue_tm_id"
+    t.string "artist_tm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
-    t.string "tm_id"
+    t.string "genre_tm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "images", force: :cascade do |t|
     t.string "url"
-    t.string "event_id"
+    t.string "event_tm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "venues", force: :cascade do |t|
+    t.string "venue_tm_id"
     t.string "name", null: false
     t.string "address_1", null: false
     t.string "address_2"
@@ -61,7 +69,6 @@ ActiveRecord::Schema.define(version: 20171120233423) do
     t.string "postal_code", null: false
     t.string "country"
     t.string "phone_number"
-    t.string "tm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

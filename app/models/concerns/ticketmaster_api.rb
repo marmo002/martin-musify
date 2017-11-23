@@ -19,10 +19,10 @@ class TicketmasterAPI
     @response = get_all_results
     @response.each do |page|
       page.each do |event|
-        if event['_embedded']['attractions'] && !Artist.find_by(tm_id: event['_embedded']['attractions'][0]['id'])
-          Artist.create(
+        if event['_embedded']['attractions'] && !Artist.find_by(artist_tm_id: event['_embedded']['attractions'][0]['id'])
+          new_artist = Artist.create(
             name: event['_embedded']['attractions'][0]['name'],
-            tm_id: event['_embedded']['attractions'][0]['id'],
+            artist_tm_id: event['_embedded']['attractions'][0]['id'],
             website: event['_embedded']['attractions'] &&
             event['_embedded']['attractions'][0]['externalLinks'] &&
             event['_embedded']['attractions'][0]['externalLinks']['homepage'] &&
@@ -44,6 +44,7 @@ class TicketmasterAPI
             event['_embedded']['attractions'][0]['externalLinks']['instagram'] &&
             event['_embedded']['attractions'][0]['externalLinks']['instagram'][0]['url'],
               )
+            puts "#{new_artist.name} created"
         end
       end
     end
@@ -55,8 +56,8 @@ class TicketmasterAPI
     @response.each do |page|
       page.each do |event|
 
-        if !Venue.find_by(tm_id: event['_embedded']['venues'][0]['id'])
-          Venue.create(
+        if !Venue.find_by(venue_tm_id: event['_embedded']['venues'][0]['id'])
+          new_venue = Venue.create(
             name: event['_embedded']['venues'][0]['name'],
             address_1: event['_embedded']['venues'][0]['address']['line1'],
             address_2: event['_embedded']['venues'][0]['address']['line2'],
@@ -65,8 +66,9 @@ class TicketmasterAPI
             postal_code: event['_embedded']['venues'][0]['postalCode'],
             country: event['_embedded']['venues'][0]['country']['name'],
             phone_number: event['_embedded']['venues'][0]['boxOfficeInfo'] && event['_embedded']['venues'][0]['boxOfficeInfo']['phoneNumberDetail'],
-            tm_id: event['_embedded']['venues'][0]['id']
+            venue_tm_id: event['_embedded']['venues'][0]['id']
           )
+          puts "#{new_venue.name} created"
         end
       end
     end
@@ -76,12 +78,13 @@ class TicketmasterAPI
     @response = get_all_results
     @response.each do |page|
       page.each do |event|
-        if !Genre.find_by(tm_id: event['classifications'][0]['genre']['id'])
+        if !Genre.find_by(genre_tm_id: event['classifications'][0]['genre']['id'])
 
-          Genre.create(
+          new_genre = Genre.create(
             name: event['classifications'][0]['genre']['name'],
-            tm_id: event['classifications'][0]['genre']['id']
+            genre_tm_id: event['classifications'][0]['genre']['id']
           )
+          puts "#{new_genre.name} created"
         end
       end
     end
@@ -92,17 +95,45 @@ class TicketmasterAPI
     @response = get_all_results
     @response.each do |page|
       page.each do |event|
-        if !Event.find_by(tm_id: event['id'])
-            Event.create(
+      # begin
+        venue_tm_id = event['_embedded']['venues'][0]['id']
+        artist_tm_id = event['_embedded']['attractions'] && event['_embedded']['attractions'][0]['id']
+        venue = venue_tm_id ? Venue.find_by(venue_tm_id: venue_tm_id) : nil
+        artist = artist_tm_id ? Artist.find_by(artist_tm_id: artist_tm_id) : nil
+        if !Event.find_by(event_tm_id: event['id'])
+            new_event = Event.create(
+            venue: venue,
+            artist: artist,
             name: event['name'],
-            tm_id: event['id'],
+            event_tm_id: event['id'],
             date: event['dates']['start']['dateTime'],
-            artist_id: event['_embedded']['attractions'] && event['_embedded']['attractions'][0]['id'],
-            venue_id: event['_embedded']['venues'][0]['id']
           )
+          puts "#{new_event.name} created"
         end
+      # rescue
+      #   binding.pry
+      # end
       end
     end
+  end
+
+  def create_db
+    create_artists
+    create_venues
+    create_genres
+    create_events
+  end
+  def destroy_db
+    Artist.destroy_all
+    Venue.destroy_all
+    Genre.destroy_all
+    Event.destroy_all
+  end
+
+  def destroy_and_create_db
+    destroy_db
+    create_db
+    nil
   end
 
 end
