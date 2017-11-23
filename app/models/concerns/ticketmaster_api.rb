@@ -1,23 +1,34 @@
 class TicketmasterAPI
+
   def get_all_results
+    if Rails.env.development?
+      return $ticketmaster_api_result if $ticketmaster_api_result
+      $ticketmaster_api_result = call_api
+      return $ticketmaster_api_result
+    else
+      return call_api
+    end
+  end
+
+  def call_api
     url = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=SezXKF8hYiQwriEyIirXVxqAoQO1KQLw&city=Toronto&classificationName=music&size=200"
     @result = HTTParty.get(url)
     total_pages =  @result['page']['totalPages']
     page = 0
-    @response = []
+    response = []
 
     total_pages.times do
       @results = HTTParty.get("#{url}&page=#{page}")
       @parsed_results = JSON.parse(@results.body)
-      @response << @parsed_results['_embedded']['events']
+      response << @parsed_results['_embedded']['events']
       page += 1
     end
-    return @response
+    return response
   end
 
   def create_artists
-    @response = get_all_results
-    @response.each do |page|
+    response = get_all_results
+    response.each do |page|
       page.each do |event|
         if event['_embedded']['attractions'] && !Artist.find_by(artist_tm_id: event['_embedded']['attractions'][0]['id'])
           new_artist = Artist.create(
@@ -44,6 +55,7 @@ class TicketmasterAPI
             event['_embedded']['attractions'][0]['externalLinks']['instagram'] &&
             event['_embedded']['attractions'][0]['externalLinks']['instagram'][0]['url'],
               )
+            new_artist.genres << Genre.find_by(genre_tm_id: event['classifications'][0]['genre']['id'])
             puts "#{new_artist.name} created"
         end
       end
@@ -52,8 +64,8 @@ class TicketmasterAPI
 
 
   def create_venues
-    @response = get_all_results
-    @response.each do |page|
+    response = get_all_results
+    response.each do |page|
       page.each do |event|
 
         if !Venue.find_by(venue_tm_id: event['_embedded']['venues'][0]['id'])
@@ -75,8 +87,8 @@ class TicketmasterAPI
   end
 
   def create_genres
-    @response = get_all_results
-    @response.each do |page|
+    response = get_all_results
+    response.each do |page|
       page.each do |event|
         if !Genre.find_by(genre_tm_id: event['classifications'][0]['genre']['id'])
 
@@ -92,8 +104,8 @@ class TicketmasterAPI
 
 
   def create_events
-    @response = get_all_results
-    @response.each do |page|
+    response = get_all_results
+    response.each do |page|
       page.each do |event|
       # begin
         venue_tm_id = event['_embedded']['venues'][0]['id']
@@ -118,9 +130,9 @@ class TicketmasterAPI
   end
 
   def create_db
+    create_genres
     create_artists
     create_venues
-    create_genres
     create_events
   end
   def destroy_db
