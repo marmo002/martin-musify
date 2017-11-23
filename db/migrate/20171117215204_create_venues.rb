@@ -1,6 +1,7 @@
 class CreateVenues < ActiveRecord::Migration[5.1]
   def change
     create_table :venues do |t|
+      t.string :venue_tm_id
       t.string :name, null: false
       t.string :address_1, null: false
       t.string :address_2
@@ -9,7 +10,6 @@ class CreateVenues < ActiveRecord::Migration[5.1]
       t.string :postal_code, null: false
       t.string :country
       t.string :phone_number
-      t.string :tm_id
 
       t.timestamps
     end
