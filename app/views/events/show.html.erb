@@ -8,7 +8,7 @@
   <li><%=@event.venue.address_1%></li>
   <% if @event.venue.address_2 %>
     <li><%=@event.venue.address_2%></li>
-    <% end %>
+  <% end %>
   <li><%= @event.venue.city %></li>
   <li><%= @event.venue.province%></li>
   <li><%= @event.venue.postal_code%> </li>
@@ -16,7 +16,7 @@
   <% if @event.venue.phone_number %>
     <li><%= @event.venue.phone_number%></li>
     <%end%>
-  <%end%>  
+  <%end%>
 </ul>
 
 <%= link_to "Back", events_path %>
