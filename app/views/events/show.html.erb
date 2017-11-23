@@ -1,0 +1,22 @@
+<h1>Show</h1>
+
+<ul>
+<li><%= @event.name %></li>
+<li><%= @event.date %></li>
+<% if @event.venue %>
+  <li><%= @event.venue.name %></li>
+  <li><%=@event.venue.address_1%></li>
+  <% if @event.venue.address_2 %>
+    <li><%=@event.venue.address_2%></li>
+    <% end %>
+  <li><%= @event.venue.city %></li>
+  <li><%= @event.venue.province%></li>
+  <li><%= @event.venue.postal_code%> </li>
+  <li><%= @event.venue.country%></li>
+  <% if @event.venue.phone_number %>
+    <li><%= @event.venue.phone_number%></li>
+    <%end%>
+  <%end%>  
+</ul>
+
+<%= link_to "Back", events_path %>
