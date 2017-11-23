@@ -1,5 +1,17 @@
 <h1>Genres#show</h1>
 
-<% @genre.events.each do |event| %>
-<p><%= event.name %></p>
-<% end %>
+<div class="card-deck">
+  <% @genre.events.each do |event| %>
+  <div class="col-3">
+    <div class="card">
+      <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+      <div class="card-body">
+        <h4 class="card-title"><%= event.name %></h4>
+        <!-- <p class="card-text"></p> -->
+        <p class="card-text"><small class="text-muted"><%= event.date %></small></p>
+        <a href="<%= event_path(event.id) %>" class="btn btn-primary">More Details</a>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
