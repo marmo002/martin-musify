@@ -54,7 +54,8 @@ class TicketmasterAPI
     @response = get_all_results
     @response.each do |page|
       page.each do |event|
-        if !Venue.find_by(tm_id: event['_embedded']['venues'][0]['id'])
+
+        # if !Venue.find_by(tm_id: event['_embedded']['venues'][0]['id'])
           Venue.create(
             name: event['_embedded']['venues'][0]['name'],
             address_1: event['_embedded']['venues'][0]['address']['line1'],
@@ -64,9 +65,9 @@ class TicketmasterAPI
             postal_code: event['_embedded']['venues'][0]['postalCode'],
             country: event['_embedded']['venues'][0]['country']['name'],
             phone_number: event['_embedded']['venues'][0]['boxOfficeInfo'] && event['_embedded']['venues'][0]['boxOfficeInfo']['phoneNumberDetail'],
-            tm_id: event['_embedded']['venues'][0]['id']
+            # tm_id: event['_embedded']['venues'][0]['id']
           )
-        end
+        # end
       end
     end
   end
@@ -75,12 +76,13 @@ class TicketmasterAPI
     @response = get_all_results
     @response.each do |page|
       page.each do |event|
-        if !Genre.find_by(tm_id: event['classifications'][0]['genre']['id'])
+        # if !Genre.find_by(tm_id: event['classifications'][0]['genre']['id'])
+
           Genre.create(
-            name: event['classifications'][0]['genre']['name'],
-            tm_id: event['classifications'][0]['genre']['id']
+            name: event['classifications'][0]['genre']['name']
+            # tm_id: event['classifications'][0]['genre']['id']
           )
-        end
+        # end
       end
     end
   end
