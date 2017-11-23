@@ -1,7 +1,21 @@
 class EventsController < ApplicationController
 
   def index
+    @event = Event.new
     @events = Event.all
+
+    if params[:search]
+      # all_results = []
+      # all_results << @events = Event.search(params[:search]).order(created_at: :desc)
+      # all_results << @artists = Artist.search(params[:search]).order(created_at: :desc)
+      # all_results.flatten
+      @events = Search.new(params[:search]).results
+        # @events = Event.search(params[:search], "name")
+        # @events = Event.artists.search(params[:search], "name").order(created_at: :desc)
+
+    else
+      @events = Event.all
+    end
   end
 
   def show
