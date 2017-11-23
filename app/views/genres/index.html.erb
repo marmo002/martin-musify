@@ -1,9 +1,6 @@
-<h1>Genres Index</h1>
+<h1>Genres#index</h1>
 
+<% @genres.each do |genre| %>
+<p> <%=link_to genre.name, genre_path(genre)%></p>
+<% end %>
 
-<ul>
-  <% @genres.each do |genre| %>
-  <li><%= genre.name %></li>
-  <% end %>
-
-</ul>

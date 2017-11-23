@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20171123224237) do
     t.string "event_tm_id"
     t.string "name", null: false
     t.datetime "date"
-    t.string "venue_tm_id"
-    t.string "artist_tm_id"
+    t.integer "venue_tm_id"
+    t.integer "artist_tm_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "artist_id"
@@ -50,13 +50,14 @@ ActiveRecord::Schema.define(version: 20171123224237) do
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "name", null: false
     t.string "genre_tm_id"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "images", force: :cascade do |t|
+    t.string "image_tm_id"
     t.string "url"
     t.string "event_tm_id"
     t.datetime "created_at", null: false

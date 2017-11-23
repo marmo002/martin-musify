@@ -4,8 +4,8 @@ class Event < ActiveRecord::Migration[5.1]
       t.string :event_tm_id
       t.string :name, null: false
       t.datetime :date
-      t.string :venue_tm_id
-      t.string :artist_tm_id
+      t.integer :venue_tm_id
+      t.integer :artist_tm_id
 
 
       t.timestamps
