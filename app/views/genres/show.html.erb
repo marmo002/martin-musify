@@ -1,2 +1,5 @@
 <h1>Genres#show</h1>
-<p>Find me in app/views/genres/show.html.erb</p>
+
+<% @genre.events.each do |event| %>
+<p><%= event.name %></p>
+<% end %>
