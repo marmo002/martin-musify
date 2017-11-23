@@ -9,6 +9,7 @@
         <h4 class="card-title"><%= event.name %></h4>
         <!-- <p class="card-text"></p> -->
         <p class="card-text"><small class="text-muted"><%= event.date %></small></p>
+        <a href="<%= event_path(event.id) %>" class="btn btn-primary">More Details</a>
       </div>
     </div>
   </div>

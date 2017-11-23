@@ -54,6 +54,7 @@ class TicketmasterAPI
     @response = get_all_results
     @response.each do |page|
       page.each do |event|
+
         if !Venue.find_by(tm_id: event['_embedded']['venues'][0]['id'])
           Venue.create(
             name: event['_embedded']['venues'][0]['name'],
@@ -76,6 +77,7 @@ class TicketmasterAPI
     @response.each do |page|
       page.each do |event|
         if !Genre.find_by(tm_id: event['classifications'][0]['genre']['id'])
+
           Genre.create(
             name: event['classifications'][0]['genre']['name'],
             tm_id: event['classifications'][0]['genre']['id']
