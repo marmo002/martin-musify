@@ -16,7 +16,10 @@
   <% if @event.venue.phone_number %>
     <li><%= @event.venue.phone_number%></li>
     <%end%>
-  <%end%>  
+  <%end%>
 </ul>
 
-<%= link_to "Back", events_path %>
+<p><%= link_to "View all events", events_path %></p>
+<% if @event.genres.any? %>
+  <p><%= link_to "#{@event.genres.first.name} Events", genre_path(@event.genres.first.id) %></p>
+<% end %>
