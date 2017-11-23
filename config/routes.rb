@@ -4,5 +4,7 @@ root "events#index"
 resources :events, only: [:index, :show]
 resources :venues, only: [:index, :show]
 resources :artists, only: [:show]
+resources :genres, only: [:index, :show]
+
 
 end
