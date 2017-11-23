@@ -1,7 +1,7 @@
 <h1>Events</h1>
 
 <div class="navbar navbar-light bg-light">
-  <%= form_tag(@project, method: :get, class: "form-inline") do %>
+  <%= form_tag(@event, method: :get, class: "form-inline") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control mr-sm-2'%>
 
     <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-success my-2 my-sm-0' %>
@@ -22,7 +22,7 @@
     <div class="card">
       <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
       <div class="card-body">
-        <h4 class="card-title"><%= event.name %></h4>
+        <h4 class="card-title">Event<%= event.name %></h4>
         <!-- <p class="card-text"></p> -->
         <p class="card-text"><small class="text-muted"><%= event.date %></small></p>
         <a href="<%= event_path(event.id) %>" class="btn btn-primary">More Details</a>
