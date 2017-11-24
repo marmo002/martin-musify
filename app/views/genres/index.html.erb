@@ -1,7 +1,16 @@
 <h1>Genres#index</h1>
 
-<% @genres.each do |genre| %>
-  <% if genre.events.any? %>
-    <p> <%=link_to genre.name, genre_path(genre)%></p>
+<div class="card-deck">
+  <% @genres.each do |genre| %>
+    <% if genre.events.any? %>
+      <div class="col-3">
+        <a href="<%= genre_url(genre) %>"><div class="card bg-dark text-white ">
+          <img class="card-img" src="<%= genre.events.first.images.where(ratio: "16_9").first.url %>" alt="Card image">
+          <div class="card-img-overlay">
+            <h4 class="card-title"><%=genre.name%></h4>
+          </div>
+        </div></a>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
