@@ -30,33 +30,33 @@ class TicketmasterAPI
     response = get_all_results
     response.each do |page|
       page.each do |event|
-        if event['_embedded']['attractions'] && !Artist.find_by(artist_tm_id: event['_embedded']['attractions'][0]['id'])
+        current_artist = event['_embedded']['attractions']
+        if current_artist && !Artist.find_by(artist_tm_id: current_artist[0]['id'])
           new_artist = Artist.create(
-            name: event['_embedded']['attractions'][0]['name'],
-            artist_tm_id: event['_embedded']['attractions'][0]['id'],
-            website: event['_embedded']['attractions'] &&
-            event['_embedded']['attractions'][0]['externalLinks'] &&
-            event['_embedded']['attractions'][0]['externalLinks']['homepage'] &&
-            event['_embedded']['attractions'][0]['externalLinks']['homepage'][0]['url'],
-            twitter: event['_embedded']['attractions'] &&
-            event['_embedded']['attractions'][0]['externalLinks'] &&
-            event['_embedded']['attractions'][0]['externalLinks']['twitter'] &&
-            event['_embedded']['attractions'][0]['externalLinks']['twitter'][0]['url'],
-            youtube:  event['_embedded']['attractions'] &&
-            event['_embedded']['attractions'][0]['externalLinks'] &&
-            event['_embedded']['attractions'][0]['externalLinks']['youtube'] &&
-            event['_embedded']['attractions'][0]['externalLinks']['youtube'][0]['url'],
-            facebook:  event['_embedded']['attractions'] &&
-            event['_embedded']['attractions'][0]['externalLinks'] &&
-            event['_embedded']['attractions'][0]['externalLinks']['facebook'] &&
-            event['_embedded']['attractions'][0]['externalLinks']['facebook'][0]['url'],
-            instragram:  event['_embedded']['attractions'] &&
-            event['_embedded']['attractions'][0]['externalLinks'] &&
-            event['_embedded']['attractions'][0]['externalLinks']['instagram'] &&
-            event['_embedded']['attractions'][0]['externalLinks']['instagram'][0]['url'],
+            name:             current_artist[0]['name'],
+            artist_tm_id:     current_artist[0]['id'],
+            website:          current_artist &&
+                              current_artist[0]['externalLinks'] &&
+                              current_artist[0]['externalLinks']['homepage'] &&
+                              current_artist[0]['externalLinks']['homepage'][0]['url'],
+            twitter:          current_artist &&
+                              current_artist[0]['externalLinks'] &&
+                              current_artist[0]['externalLinks']['twitter'] &&
+                              current_artist[0]['externalLinks']['twitter'][0]['url'],
+            youtube:          current_artist &&
+                              current_artist[0]['externalLinks'] &&
+                              current_artist[0]['externalLinks']['youtube'] &&
+                              current_artist[0]['externalLinks']['youtube'][0]['url'],
+            facebook:         current_artist &&
+                              current_artist[0]['externalLinks'] &&
+                              current_artist[0]['externalLinks']['facebook'] &&
+                              current_artist[0]['externalLinks']['facebook'][0]['url'],
+            instragram:       current_artist &&
+                              current_artist[0]['externalLinks'] &&
+                              current_artist[0]['externalLinks']['instagram'] &&
+                              current_artist[0]['externalLinks']['instagram'][0]['url'],
               )
             new_artist.genres << Genre.find_by(genre_tm_id: event['classifications'][0]['genre']['id'])
-            puts "#{new_artist.name} created"
         end
       end
     end
@@ -67,20 +67,21 @@ class TicketmasterAPI
     response = get_all_results
     response.each do |page|
       page.each do |event|
-
-        if !Venue.find_by(venue_tm_id: event['_embedded']['venues'][0]['id'])
+        current_venue = event['_embedded']['venues'][0]
+        if !Venue.find_by(venue_tm_id: current_venue['id'])
           new_venue = Venue.create(
-            name: event['_embedded']['venues'][0]['name'],
-            address_1: event['_embedded']['venues'][0]['address']['line1'],
-            address_2: event['_embedded']['venues'][0]['address']['line2'],
-            city: event['_embedded']['venues'][0]['city']['name'],
-            province: event['_embedded']['venues'][0]['state']['name'],
-            postal_code: event['_embedded']['venues'][0]['postalCode'],
-            country: event['_embedded']['venues'][0]['country']['name'],
-            phone_number: event['_embedded']['venues'][0]['boxOfficeInfo'] && event['_embedded']['venues'][0]['boxOfficeInfo']['phoneNumberDetail'],
-            venue_tm_id: event['_embedded']['venues'][0]['id']
+            name:         current_venue['name'],
+            address_1:    current_venue['address']['line1'],
+            address_2:    current_venue['address']['line2'],
+            city:         current_venue['city']['name'],
+            province:     current_venue['state']['name'],
+            postal_code:  current_venue['postalCode'],
+            country:      current_venue['country']['name'],
+            phone_number: current_venue['boxOfficeInfo'] && current_venue['boxOfficeInfo']['phoneNumberDetail'],
+            venue_tm_id:  current_venue['id'],
+            latitude:     current_venue['location']['latitude'],
+            longitude:    current_venue['location']['longitude']
           )
-          puts "#{new_venue.name} created"
         end
       end
     end
@@ -90,13 +91,12 @@ class TicketmasterAPI
     response = get_all_results
     response.each do |page|
       page.each do |event|
-        if !Genre.find_by(genre_tm_id: event['classifications'][0]['genre']['id'])
-
+        current_genre = event['classifications'][0]['genre']
+        if !Genre.find_by(genre_tm_id: current_genre['id'])
           new_genre = Genre.create(
-            name: event['classifications'][0]['genre']['name'],
-            genre_tm_id: event['classifications'][0]['genre']['id']
+            name:        current_genre['name'],
+            genre_tm_id: current_genre['id']
           )
-          puts "#{new_genre.name} created"
         end
       end
     end
@@ -106,24 +106,22 @@ class TicketmasterAPI
     response = get_all_results
     response.each do |page|
       page.each do |event|
-      # begin
+
         venue_tm_id = event['_embedded']['venues'][0]['id']
+        artist_tm_id = event['_embedded']['attractions'] && event['_embedded']['attractions'][0]['id']
         artist_tm_id = event['_embedded']['attractions'] && event['_embedded']['attractions'][0]['id']
         venue = venue_tm_id ? Venue.find_by(venue_tm_id: venue_tm_id) : nil
         artist = artist_tm_id ? Artist.find_by(artist_tm_id: artist_tm_id) : nil
+
         if !Event.find_by(event_tm_id: event['id'])
             new_event = Event.create(
-            venue: venue,
-            artist: artist,
-            name: event['name'],
+            venue:       venue,
+            artist:      artist,
+            name:        event['name'],
             event_tm_id: event['id'],
-            date: event['dates']['start']['dateTime'],
+            date:        event['dates']['start']['dateTime'],
           )
-          puts "#{new_event.name} created"
         end
-      # rescue
-      #   binding.pry
-      # end
       end
     end
   end
@@ -132,11 +130,13 @@ class TicketmasterAPI
     response = get_all_results
     response.each do |page|
       page.each do |event|
+
         event_tm_id = event['id']
         current_event = event_tm_id ? Event.find_by(event_tm_id: event_tm_id) : nil
+
           event['images'].each do |image|
             new_image = Image.create!(
-              url: image['url'],
+              url:   image['url'],
               ratio: image['ratio'],
               event: current_event
             )
