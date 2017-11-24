@@ -23,3 +23,7 @@
 <% if @event.genres.any? %>
   <p><%= link_to "#{@event.genres.first.name} Events", genre_path(@event.genres.first.id) %></p>
 <% end %>
+
+<div id="map"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["MAPS_KEY"]%>&callback=initMap"
+    async defer></script>
