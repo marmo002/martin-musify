@@ -102,7 +102,6 @@ class TicketmasterAPI
     end
   end
 
-
   def create_events
     response = get_all_results
     response.each do |page|
@@ -129,17 +128,37 @@ class TicketmasterAPI
     end
   end
 
+  def create_event_images
+    response = get_all_results
+    response.each do |page|
+      page.each do |event|
+        event_tm_id = event['id']
+        current_event = event_tm_id ? Event.find_by(event_tm_id: event_tm_id) : nil
+          event['images'].each do |image|
+            new_image = Image.create!(
+              url: image['url'],
+              ratio: image['ratio'],
+              event: current_event
+            )
+            puts "#{new_image} created"
+          end
+      end
+    end
+  end
+
   def create_db
     create_genres
     create_artists
     create_venues
     create_events
+    create_event_images
   end
   def destroy_db
     Artist.destroy_all
     Venue.destroy_all
     Genre.destroy_all
     Event.destroy_all
+    Image.destroy_all
   end
 
   def destroy_and_create_db
