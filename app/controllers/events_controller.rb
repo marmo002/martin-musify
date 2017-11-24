@@ -12,7 +12,6 @@ class EventsController < ApplicationController
       @events = Search.new(params[:search]).results
         # @events = Event.search(params[:search], "name")
         # @events = Event.artists.search(params[:search], "name").order(created_at: :desc)
-
     else
       @events = Event.all
     end
