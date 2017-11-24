@@ -5,6 +5,7 @@ class Search
     @search_term = search_term
     populate_results_from_event
     populate_results_from_genres
+    populate_results_from_venues
   end
 
   def results
@@ -22,6 +23,12 @@ class Search
       genre.artists.each do |artist|
         @results << artist.events
       end
+    end
+  end
+  def populate_results_from_venues
+    venues = Venue.where("name ILIKE ?", "%#{@search_term}%")
+    venues.each do |venue|
+        @results << venue.events
     end
   end
 
