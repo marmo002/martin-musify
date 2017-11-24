@@ -1,7 +1,10 @@
 class LoadTicketmasterApiJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    # Do something later
+  def perform
+
+    TicketmasterAPI.new.create_db
+
   end
+
 end

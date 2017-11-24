@@ -34,6 +34,7 @@ gem 'jquery-rails'
 gem 'httparty'
 gem 'pry-rails'
 gem 'sidekiq'
+gem 'rufus-scheduler'
 
 
 group :development, :test do
