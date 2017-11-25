@@ -5,10 +5,11 @@
   <% @venues.each do |venue| %>
   <div class="col-3">
     <div class="card">
-      <!--<img class="card-img-top" src="<%#= event.images.where(ratio: "16_9").first.url %>" alt="Card image cap">-->
+        <% if venue.venue_images %>
+      <!--<img class="card-img-top" src="<%#= venue.venue_images.sample.url %>" alt="Card image cap">-->
+    <% end %>
       <div class="card-body">
         <h4 class="card-title"><%= venue.name %></h4>
-        <!--<%# <p class="card-text"><small class="text-muted"><%#= venue.date %></small></p> %>-->
         <a href="<%= venue_path(venue.id) %>" class="btn btn-primary">More Details</a>
       </div>
     </div>

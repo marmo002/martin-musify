@@ -3,4 +3,5 @@ class Venue < ApplicationRecord
   after_validation :geocode
 
   has_many :events
+  has_many :venue_images
 end
