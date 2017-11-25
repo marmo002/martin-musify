@@ -13,18 +13,35 @@ function initMap() {
     dataType: 'JSON'
   }).done(function(response){
 
-    bitmaker = {lat: response["lat"], lng: response["lng"]}
+    coord = {lat: response["lat"], lng: response["lng"]};
 
     var map = new google.maps.Map(document.getElementById('map'), {
-      center: bitmaker,
+      center: coord,
       zoom: 15
     });
 
     var marker = new google.maps.Marker({
       map: map,
-      position: bitmaker,
-      title: 'bitmaker'
+      position: coord,
+      title: response["venueName"]
     });
+
+    var contentString = '<div id="content">'+
+            '<h1>'+ response["venueName"] +'</h1> ' +
+            '<p>'+ response["address_1"] + '</p>' +
+            '<p>'+ response["city"] + '</p>' +
+            '<p>'+ response["postal_code"] + '</p>' +
+            '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+
+
   })
 
 
