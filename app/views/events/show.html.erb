@@ -24,7 +24,7 @@
   <p><%= link_to "#{@event.genres.first.name} Events", genre_path(@event.genres.first.id) %></p>
 <% end %>
 
-<h1>latitude: <%= @venue.latitude %></h1>
-<h1>longitude: <%= @venue.longitude %></h1>
 
-<div id="map"></div>
+<% if @event.venue.latitude != 0 %>
+  <div id="map"></div>
+<%end%>
