@@ -5,5 +5,5 @@ require 'rufus-scheduler'
 s = Rufus::Scheduler.singleton
 
 s.every '6h' do
-    LoadTicketMasterApi.perform_now
+    LoadTicketMasterApiJob.perform_now
 end
