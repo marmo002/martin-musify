@@ -79,8 +79,7 @@ class TicketmasterAPI
             country:      current_venue['country']['name'],
             phone_number: current_venue['boxOfficeInfo'] && current_venue['boxOfficeInfo']['phoneNumberDetail'],
             venue_tm_id:  current_venue['id'],
-            latitude:     current_venue['location']['latitude'],
-            longitude:    current_venue['location']['longitude']
+            full_address:  "#{current_venue['address']['line1']}, #{current_venue['city']['name']}, #{current_venue['state']['name']}, #{current_venue['postalCode']}",
           )
         end
       end

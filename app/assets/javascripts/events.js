@@ -13,7 +13,7 @@ function initMap() {
     dataType: 'JSON'
   }).done(function(response){
 
-    bitmaker = {lat: parseFloat(response["lat"]), lng: parseFloat(response["lng"])}
+    bitmaker = {lat: response["lat"], lng: response["lng"]}
 
     var map = new google.maps.Map(document.getElementById('map'), {
       center: bitmaker,
