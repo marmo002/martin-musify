@@ -25,6 +25,10 @@ class EventsController < ApplicationController
       format.html
       format.json do
         render json: {
+          "venueName": @venue.name,
+          "address_1": @venue.address_1,
+          "city": @venue.city,
+          "postal_code": @venue.postal_code,
           "lat": @venue.latitude,
           "lng": @venue.longitude
         }
