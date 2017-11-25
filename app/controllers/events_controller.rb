@@ -19,5 +19,19 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @venue = @event.venue
+    # @latitude = @event.venue.latitude
+    # @longitude = @event.venue.longitude
+
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          "latitude": @venue.latitude,
+          "longitude": @venue.longitude
+        }
+      end
+    end
+
   end
 end
