@@ -20,8 +20,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @venue = @event.venue
-    # @latitude = @event.venue.latitude
-    # @longitude = @event.venue.longitude
 
     respond_to do |format|
       format.html

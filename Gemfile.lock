@@ -62,6 +62,7 @@ GEM
       tzinfo
     execjs (2.7.0)
     ffi (1.9.18)
+    geocoder (1.4.4)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     httparty (0.15.6)
@@ -196,6 +197,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   capybara (~> 2.13)
+  geocoder
   httparty
   jbuilder (~> 2.5)
   jquery-rails
