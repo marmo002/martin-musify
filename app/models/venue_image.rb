@@ -1,0 +1,2 @@
+class VenueImage < ApplicationRecord
+end
