@@ -145,16 +145,41 @@ class TicketmasterAPI
     end
   end
 
+  def create_venue_images
+    response = get_all_results
+    response.each do |page|
+      page.each do |event|
+        
+        venue_tm_id = event['_embedded']['venues'][0]['id']
+        current_venue = venue_tm_id ? Venue.find_by(venue_tm_id: venue_tm_id) : nil
+
+        # event['_embedded']['venues'][0]['images']
+        
+        if event['_embedded']['venues'][0]['images']
+          event['_embedded']['venues'][0]['images'].each do |image|
+            new_image = VenueImage.create!(
+              url:   image['url'],
+              ratio: image['ratio'],
+              venue: current_venue
+            )
+          end
+        end
+      end
+    end
+  end
+
   def create_db
     create_genres
     create_artists
     create_venues
+    create_venue_images
     create_events
     create_event_images
   end
   def destroy_db
     Artist.destroy_all
     Venue.destroy_all
+    VenueImage.destroy_all
     Genre.destroy_all
     Event.destroy_all
     Image.destroy_all

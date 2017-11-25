@@ -63,8 +63,12 @@ ActiveRecord::Schema.define(version: 20171125212414) do
   end
 
   create_table "venue_images", force: :cascade do |t|
+    t.string "ratio"
+    t.string "url"
+    t.bigint "venue_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["venue_id"], name: "index_venue_images_on_venue_id"
   end
 
   create_table "venues", force: :cascade do |t|
