@@ -95,7 +95,7 @@ class TicketmasterAPI
     response.each do |page|
       page.each do |event|
         current_genre = event['classifications'][0]['genre']
-        if !Genre.find_by(genre_tm_id: current_genre['id'])
+        if !Genre.find_by(name: current_genre['name'])
           new_genre = Genre.create(
             name:        current_genre['name'],
             genre_tm_id: current_genre['id']
@@ -156,8 +156,6 @@ class TicketmasterAPI
 
         venue_tm_id = event['_embedded']['venues'][0]['id']
         current_venue = venue_tm_id ? Venue.find_by(venue_tm_id: venue_tm_id) : nil
-
-        # event['_embedded']['venues'][0]['images']
 
         if event['_embedded']['venues'][0]['images']
           event['_embedded']['venues'][0]['images'].each do |image|
