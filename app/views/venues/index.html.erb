@@ -20,4 +20,7 @@
   </div>
   <% end %>
 </div>
+
+<%= paginate @venues %>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["MAPS_KEY"]%>&callback=venueIndexMap" async defer></script>
