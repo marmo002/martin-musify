@@ -56,7 +56,11 @@ class TicketmasterAPI
                               current_artist[0]['externalLinks']['instagram'] &&
                               current_artist[0]['externalLinks']['instagram'][0]['url'],
               )
-            new_artist.genres << Genre.find_by(genre_tm_id: event['classifications'][0]['genre']['id'])
+              if Genre.find_by(name: event['classifications'][0]['genre']['name']).name == 'Undefined'
+                new_artist.genres << Genre.find_by(name: 'Other')
+              else
+                new_artist.genres << Genre.find_by(name: event['classifications'][0]['genre']['name'])
+              end
         end
       end
     end
@@ -149,12 +153,12 @@ class TicketmasterAPI
     response = get_all_results
     response.each do |page|
       page.each do |event|
-        
+
         venue_tm_id = event['_embedded']['venues'][0]['id']
         current_venue = venue_tm_id ? Venue.find_by(venue_tm_id: venue_tm_id) : nil
 
         # event['_embedded']['venues'][0]['images']
-        
+
         if event['_embedded']['venues'][0]['images']
           event['_embedded']['venues'][0]['images'].each do |image|
             new_image = VenueImage.create!(
