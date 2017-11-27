@@ -6,7 +6,7 @@
     <div class="card">
       <img class="card-img-top" src="<%= event.images.where(ratio: "16_9").first.url %>" alt="Card image cap">
       <div class="card-body">
-        <h4 class="card-title">Event<%= event.name %></h4>
+        <h4 class="card-title"><%= event.name %></h4>
         <p class="card-text"><small class="text-muted"><%= event.date %></small></p>
         <a href="<%= event_path(event.id) %>" class="btn btn-primary">More Details</a>
       </div>

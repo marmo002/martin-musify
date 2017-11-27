@@ -8,6 +8,7 @@ class VenuesController < ApplicationController
 
         json_data = @venues.map do |venue|
           {
+            "venueId": venue.id,
             "venueName": venue.name,
             "address_1": venue.address_1,
             "city": venue.city,
