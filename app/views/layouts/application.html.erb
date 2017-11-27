@@ -35,9 +35,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <% Genre.all.order(:name).each do |genre| %>
                 <% if genre.events.any? %>
-                  <p> <%#=link_to genre.name, genre_path(genre)%></p>
                   <%= link_to genre.name, genre_path(genre), class: "dropdown-item" %>
-                  <!-- <a class="dropdown-item" href="#">Action</a> -->
                 <% end %>
               <% end %>
             </div>
@@ -49,7 +47,7 @@
       </div>
     </nav>
 
-    <div class="navbar navbar-light bg-light">
+    <div class="mx-auto">
       <%= form_tag(events_path, { :method => :get,  :class => "form-inline" } ) do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control mr-sm-2'%>
 
