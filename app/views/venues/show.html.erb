@@ -1,2 +1,25 @@
-<h1>Venues#show</h1>
-<p>Find me in app/views/venues/show.html.erb</p>
+<h1>Venue ShowPage: Displays list of Events for this venue</h1>
+
+<div class="row">
+<div class="col-lg-4">
+  <ul>
+    <li>Venue Name: <%= @venue.name%></li>
+    <li>Venue Address: <%= @venue.address_1%></li>
+    <li><%= @venue.city %></li>
+    <li><%= @venue.province %></li>
+    <li><%= @venue.postal_code %></li>
+    <% if @venue.phone_number %>
+    <li><%= @venue.phone_number %></li>
+    <% end %>
+
+  </ul>
+</div>
+<div class="col-lg-8">
+  <% @venue.events.each do |event| %>
+    <ul class="temp-events">
+      <li><strong><%= event.name %></strong></li>
+      <li><strong>Date: </strong><%= event.date.strftime("%A %d, %Y @ %I:%M %p") %></li>
+    </ul>
+  <% end %>
+
+</div>
