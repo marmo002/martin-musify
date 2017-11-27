@@ -1,5 +1,7 @@
 <h1>Genres#show</h1>
 
+<div id="genre-map"></div>
+
 <div class="card-deck">
   <% @genre.events.each do |event| %>
   <div class="col-3">
@@ -8,9 +10,11 @@
       <div class="card-body">
         <h4 class="card-title"><%= event.name %></h4>
         <p class="card-text"><small class="text-muted"><%= event.date %></small></p>
-        <a href="<%= event_path(event.id) %>" class="btn btn-primary">More Details</a>
+        <a id="event<%= event.id %>" href="<%= event_path(event.id) %>" class="btn btn-primary">More Details</a>
       </div>
     </div>
   </div>
   <% end %>
-</div>
+</div><!-- card-deck -->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["MAPS_KEY"]%>&callback=genreShowMap" async defer></script>
