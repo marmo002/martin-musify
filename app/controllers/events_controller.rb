@@ -2,7 +2,8 @@ class EventsController < ApplicationController
 
   def index
     if params[:search]
-      @events = Search.new(params[:search]).results
+      @results = Search.new(params[:search]).results
+      @events = Kaminari.paginate_array(@results).page(params[:page]).per(12)
     else
       @events = Event.all.page params[:page]
     end
