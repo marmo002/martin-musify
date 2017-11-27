@@ -12,9 +12,10 @@
     <% end %>
       <div class="card-body">
         <h4 class="card-title"><%= venue.name %></h4>
-        <a href="<%= venue_path(venue.id) %>" class="btn btn-primary">More Details</a>
+        <a id="venue<%= venue.id %>" href="<%= venue_path(venue.id) %>" class="btn btn-primary">More Details</a>
       </div>
     </div>
   </div>
   <% end %>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["MAPS_KEY"]%>&callback=venueIndexMap" async defer></script>
