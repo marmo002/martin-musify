@@ -11,6 +11,7 @@
           <p class="card-text"><small class="text-muted"><%= event.pretty_date %></small></p>
           <p class="card-text"><small class="text-muted"><%= event.pretty_time %></small></p>
         <% end %>
+        <p class="card-text"><small class="text-muted"><%= event.venue.address_1 %></small></p>
         <a href="<%= event_path(event.id) %>" class="btn btn-primary">More Details</a>
       </div>
     </div>
