@@ -18,8 +18,7 @@
   <% @venue.events.each do |event| %>
     <ul class="temp-events">
       <li><strong><%= event.name %></strong></li>
-      <li><strong>Date: </strong><%= event.date.strftime("%A %d, %Y @ %I:%M %p") %></li>
+      <li><strong>Date: </strong><%= event.pretty_date %> @ <%= event.pretty_time %></li>
     </ul>
   <% end %>
-
 </div>
