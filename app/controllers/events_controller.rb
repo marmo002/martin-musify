@@ -1,13 +1,10 @@
 class EventsController < ApplicationController
 
   def index
-    @event = Event.new
-    @events = Event.all
-
     if params[:search]
       @events = Search.new(params[:search]).results
     else
-      @events = Event.all
+      @events = Event.all.page params[:page]
     end
   end
 

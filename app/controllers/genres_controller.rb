@@ -5,5 +5,6 @@ class GenresController < ApplicationController
 
   def show
     @genre = Genre.find(params[:id])
+    @events = @genre.events.page params[:page]
   end
 end
