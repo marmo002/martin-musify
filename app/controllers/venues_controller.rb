@@ -1,6 +1,6 @@
 class VenuesController < ApplicationController
   def index
-    @venues = Venue.all
+    @venues = Venue.all.page params[:page]
 
     respond_to do |format|
       format.html

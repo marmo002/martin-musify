@@ -5,7 +5,7 @@ class GenresController < ApplicationController
 
   def show
     @genre = Genre.find(params[:id])
-    @events  = @genre.events
+    @events = @genre.events.page params[:page]
 
     respond_to do |format|
       format.html
@@ -25,8 +25,6 @@ class GenresController < ApplicationController
 
         render json: json_data
       end
-    end#respond_to
-
-
+    end
   end
 end

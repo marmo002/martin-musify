@@ -2,7 +2,10 @@
 
 <ul>
 <li><%= @event.name %></li>
-<li><%= @event.date %></li>
+<% if @event.date %>
+  <li><%= @event.pretty_date %></li>
+  <li><%= @event.pretty_time %></li>
+<% end %>
 <% if @event.venue %>
   <li><%= @event.venue.name %></li>
   <li><%=@event.venue.address_1%></li>
