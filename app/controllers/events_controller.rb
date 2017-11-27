@@ -14,7 +14,8 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @venue = @event.venue
-
+    @location = params[:postal_code]
+    @geolocation = Geocoder.search(@location)
     respond_to do |format|
       format.html
       format.json do
@@ -24,10 +25,10 @@ class EventsController < ApplicationController
           "city": @venue.city,
           "postal_code": @venue.postal_code,
           "lat": @venue.latitude,
-          "lng": @venue.longitude
+          "lng": @venue.longitude,
+          "clientLocation": @geolocation
         }
       end
     end
-
   end
 end

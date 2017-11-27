@@ -3,13 +3,22 @@
 
 function eventShowMap() {
   // Create a map object and specify the DOM element for display.
+  console.log(document.URL)
   $.ajax({
     url: document.URL,
     method:'GET',
     dataType: 'JSON'
   }).done(function(response){
-
+    console.log(response);
     coord = {lat: response["lat"], lng: response["lng"]};
+
+    var postalCode = document.querySelector('#postal-code-input').value;
+
+    if (postalCode) {
+      console.log("Postal code found:" + postalCode);
+      x = response['clientLocation']
+      // alert('found postal code:' + document.querySelector('#postal-code-input'));
+    }
 
     var map = new google.maps.Map(document.getElementById('map'), {
       center: coord,
@@ -43,6 +52,19 @@ function eventShowMap() {
 
 }
 
+// var postal_code = document.querySelector("postal_code").value
+// postal_code.addEventListener('click', function(){
+//   if (document.querySelector("postal_code")){
+//     location = response["clientLocation"]
+//   }
+//
+//   var map = new google.maps.Map(document.getElementById('map'), {
+//     center: location,
+//     disableDefaultUI: true,
+//     zoom: 15
+//   });
+// })
+//
 //
 // document.addEventListener("DOMContentLoaded", function() {
 //

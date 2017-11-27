@@ -1,4 +1,5 @@
 <h1>Show</h1>
+<p> <%= @location %> </p>
 
 <ul>
 <li><%= @event.name %></li>
@@ -27,4 +28,15 @@
 
 
 <div id="map"></div>
+  <div id="map_form"> Enter Postal Code To See Map Location:
+    <%= form_tag event_path, method: :get do %>
+      <div id="form-box">
+        <%= label_tag :postal_code %>
+        <%= text_field_tag :postal_code, params[:postal_code], id: "postal-code-input" %>
+      </div>
+      <div id="form-submit">
+        <%= submit_tag %>
+      </div>
+    <% end %>
+  </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["MAPS_KEY"]%>&callback=eventShowMap" async defer></script>
