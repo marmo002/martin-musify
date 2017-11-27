@@ -5,5 +5,6 @@ resources :events, only: [:index, :show]
 resources :venues, only: [:index, :show]
 resources :artists, only: [:show]
 resources :genres, only: [:index, :show]
+resources :abouts, only: [:index]
 
 end

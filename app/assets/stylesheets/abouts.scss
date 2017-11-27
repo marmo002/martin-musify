@@ -1,0 +1,10 @@
+// Place all the styles related to the Abouts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.picture_div img{
+    filter: grayscale(1);
+}
+
+.picture_div img:hover{
+  filter:none;
+}
