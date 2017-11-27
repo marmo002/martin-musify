@@ -2,12 +2,15 @@
 
 <div class="card-deck">
   <% @genre.events.each do |event| %>
-  <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+  <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-3">
     <div class="card">
       <img class="card-img-top" src="<%= event.images.sixteen_by_nine.first.url %>" alt="Card image cap">
       <div class="card-body">
         <h4 class="card-title"><%= event.name %></h4>
-        <p class="card-text"><small class="text-muted"><%= event.date %></small></p>
+        <% if event.date %>
+          <p class="card-text"><small class="text-muted"><%= event.pretty_date %></small></p>
+          <p class="card-text"><small class="text-muted"><%= event.pretty_time %></small></p>
+        <% end %>
         <a href="<%= event_path(event.id) %>" class="btn btn-primary">More Details</a>
       </div>
     </div>
