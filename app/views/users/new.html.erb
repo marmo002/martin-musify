@@ -1,22 +1,25 @@
 <h1>Create an Account</h1>
+<div class="container my-3 mx-auto">
 
-<%= form_for @user do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= form_for @user do |f| %>
+  <div class="form-group">
+    <%= f.text_field :name, {class: "form-control", placeholder: "Enter name"} %>
+  </div>
 
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+  <div class="form-group">
+    <%= f.email_field :email, {class: "form-control", placeholder: "Enter email"} %>
+  </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <div class="form-group">
+    <%= f.password_field :password, {class: "form-control", placeholder:"Password"} %>
+  </div>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <div class="form-group">
+    <%= f.password_field :password_confirmation, {class: "form-control", placeholder:"Password Confirmation"}  %>
+  </div>
 
-  <%= f.submit 'Create Account' %>
+    <%= f.submit 'Create Account', class: "btn btn-primary" %>
 
+  <% end %>
 
-
-
-
-<% end %>
+</div>

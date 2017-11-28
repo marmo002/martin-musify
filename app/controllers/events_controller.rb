@@ -26,6 +26,22 @@ class EventsController < ApplicationController
         }
       end
     end
-
   end
+
+  def new
+    @event = Event.new
+  end
+
+  def create
+    #code
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    #code
+  end
+
 end
