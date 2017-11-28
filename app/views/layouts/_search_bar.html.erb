@@ -1,0 +1,18 @@
+<div class="row search">
+  <div class="col-8 offset-2 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2 ml-auto d-inline-block py-5">
+    <%= form_tag(events_path, { :method => :get, class: 'form-inline' } ) do %>
+      <div class="form-group">
+        <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control'%>
+      </div>
+
+        <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-success' %>
+          <% if params[:search]%>
+            <%= link_to 'Clear', events_url, class: 'btn btn-default', role: 'button' %>
+          <% end %>
+      <% end %>
+  </div>
+</div>
+
+<% if params[:search] && @events.empty? %>
+<div class="alert alert-info" role="alert">No Records found for "<%= params[:search] %>"</div>
+<% end %>

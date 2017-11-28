@@ -2,13 +2,11 @@ class EventsController < ApplicationController
   protect_from_forgery only: %i(index show)
 
   def index
-    @event = Event.new
-    @events = Event.all
-
     if params[:search]
-      @events = Search.new(params[:search]).results
+      @results = Search.new(params[:search]).results
+      @events = Kaminari.paginate_array(@results).page(params[:page]).per(12)
     else
-      @events = Event.all
+      @events = Event.all.page params[:page]
     end
   end
 

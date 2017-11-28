@@ -5,11 +5,13 @@
 
 <div class="card-deck">
   <% @venues.each do |venue| %>
-  <div class="col-3">
+  <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-3 d-flex">
     <div class="card">
-        <% if venue.venue_images %>
-      <!--<img class="card-img-top" src="<%#= venue.venue_images.sample.url %>" alt="Card image cap">-->
-    <% end %>
+      <% if venue.venue_images.any? &&  venue.venue_images.venue_sixteen_by_nine.any?%>
+        <img class="card-img-top" src="<%= venue.venue_images.venue_sixteen_by_nine.first.url %>" alt="Card image cap">
+      <% else %>
+        <%= image_tag 'default-placeholder-1024x1024-960x540.png', class: "card-img-top"%>
+      <% end %>
       <div class="card-body">
         <h4 class="card-title"><%= venue.name %></h4>
         <a id="venue<%= venue.id %>" href="<%= venue_path(venue.id) %>" class="btn btn-primary">More Details</a>
@@ -18,4 +20,7 @@
   </div>
   <% end %>
 </div>
+
+<%= paginate @venues %>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["MAPS_KEY"]%>&callback=venueIndexMap" async defer></script>
