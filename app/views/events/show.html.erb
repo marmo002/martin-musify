@@ -4,11 +4,12 @@
   <p class="lead"><strong>When:</strong> <%= @event.pretty_date %> @ <%= @event.pretty_time %></p>
   <% end %>
   <% if @event.artist %>
-  <p class="lead"><strong>Who's Palying:</strong> <%= link_to @event.artist.name, artist_path(@event.artist.id) %></p>
+  <p class="lead"><strong>Who's Palying:</strong> <%= link_to @event.artist.name, artist_path(@event.artist) %></p>
   <% end %>
+  <img src="<%= @event.images.four_by_three.first.url %>" alt="<%=@event.name %>">
   <hr class="my-4">
   <% if @event.venue %>
-    <p><strong>Where:</strong> <%= link_to @event.venue.name, venue_path(@event.venue.id) %></p>
+    <p><strong>Where:</strong> <%= link_to @event.venue.name, venue_path(@event.venue) %></p>
     <p><%=@event.venue.address_1%> <%= @event.venue.address_2 ? @event.venue.address_2 : "" %></p>
     <p><%= @event.venue.city %>, <%= @event.venue.province%> <%= @event.venue.postal_code%></p>
     <% if @event.venue.phone_number %>
