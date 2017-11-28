@@ -12,59 +12,8 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href= "<%= root_path %>" >
-        <%= image_tag "Nav-Logo.png", size: "46x40", alt: "Musify Logo", class: "d-inline-block align-top" %>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="<%= events_path %>">Events</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= venues_path %>">Venues</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Genres
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <% Genre.all.order(:name).each do |genre| %>
-                <% if genre.events.any? %>
-                  <%= link_to genre.name, genre_path(genre), class: "dropdown-item" %>
-                <% end %>
-              <% end %>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= abouts_path %>">About</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="row search">
-      <div class="col-8 offset-2 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2 ml-auto d-inline-block py-3">
-        <%= form_tag(events_path, { :method => :get, class: 'form-inline' } ) do %>
-          <div class="form-group">
-            <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control'%>
-          </div>
-
-            <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-success' %>
-              <% if params[:search]%>
-                <%= link_to 'Clear', events_url, class: 'btn btn-default', role: 'button' %>
-              <% end %>
-          <% end %>
-      </div>
-    </div>
-
-    <% if params[:search] && @events.empty? %>
-    <div class="alert alert-info" role="alert">No Records found for "<%= params[:search] %>"</div>
-    <% end %>
+    <%= render :partial => 'layouts/nav_bar' %>
+    <%= render :partial => 'layouts/search_bar' %>
 
 
     <%= yield %>
@@ -75,12 +24,8 @@
 
 
     <!-- Footer -->
-    <footer class="py-3 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Bitmaker &copy; Musify 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
+    <%= render :partial => 'layouts/footer' %>
+
 
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
    </body>

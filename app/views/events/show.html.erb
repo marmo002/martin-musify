@@ -1,33 +1,28 @@
-<h1>Show</h1>
-
-<ul>
-<li><%= @event.name %></li>
-<% if @event.date %>
-  <li><%= @event.pretty_date %></li>
-  <li><%= @event.pretty_time %></li>
-<% end %>
-<% if @event.venue %>
-  <li><%= @event.venue.name %></li>
-  <li><%=@event.venue.address_1%></li>
-  <% if @event.venue.address_2 %>
-    <li><%=@event.venue.address_2%></li>
+<div class="jumbotron">
+  <h1 class="display-3"><%= @event.name %></h1>
+  <% if @event.date %>
+  <p class="lead"><strong>When:</strong> <%= @event.pretty_date %> @ <%= @event.pretty_time %></p>
   <% end %>
-  <li><%= @event.venue.city %></li>
-  <li><%= @event.venue.province%></li>
-  <li><%= @event.venue.postal_code%> </li>
-  <li><%= @event.venue.country%></li>
-  <% if @event.venue.phone_number %>
-    <li><%= @event.venue.phone_number%></li>
+  <% if @event.artist %>
+  <p class="lead"><strong>Who's Palying:</strong> <%= link_to @event.artist.name, artist_path(@event.artist) %></p>
+  <% end %>
+  <img src="<%= @event.images.four_by_three.first.url %>" alt="<%=@event.name %>">
+  <hr class="my-4">
+  <% if @event.venue %>
+    <p><strong>Where:</strong> <%= link_to @event.venue.name, venue_path(@event.venue) %></p>
+    <p><%=@event.venue.address_1%> <%= @event.venue.address_2 ? @event.venue.address_2 : "" %></p>
+    <p><%= @event.venue.city %>, <%= @event.venue.province%> <%= @event.venue.postal_code%></p>
+    <% if @event.venue.phone_number %>
+      <p><strong>Contact Info:</strong><%= @event.venue.phone_number%></p>
+      <%end%>
     <%end%>
-  <%end%>
-</ul>
-
-<p><%= link_to "View all events", events_path %></p>
-<% if @event.genres.any? %>
-  <p><%= link_to "#{@event.genres.first.name} Events", genre_path(@event.genres.first.id) %></p>
-<% end %>
-
-
+  <p class="lead">
+    <p><%= link_to "View all events", events_path %>
+      <% if @event.genres.any? %>
+       | <%= link_to "#{@event.genres.first.name} Events", genre_path(@event.genres.first.id) %></p>
+    <% end %>
+  </p>
+</div>
 
 <div id="map"></div>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["MAPS_KEY"]%>&callback=eventShowMap" async defer></script>

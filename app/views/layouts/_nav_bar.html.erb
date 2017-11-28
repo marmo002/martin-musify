@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href= "<%= root_path %>" >
+    <%= image_tag "Nav-Logo.png", size: "46x40", alt: "Musify Logo", class: "d-inline-block align-top" %>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="<%= events_path %>">Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= venues_path %>">Venues</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Genres
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <% Genre.all.order(:name).each do |genre| %>
+            <% if genre.events.any? %>
+              <%= link_to genre.name, genre_path(genre), class: "dropdown-item" %>
+            <% end %>
+          <% end %>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%= abouts_path %>">About</a>
+      </li>
+    </ul>
+  </div>
+</nav>
