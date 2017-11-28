@@ -28,7 +28,9 @@ class EventsController < ApplicationController
     end
   end
   def location
+    # if session[:postal_code] == nil
     @location = params[:postal_code]
+    session[:postal_code] = params[:postal_code]
     @geolocationObject = Geocoder.search(@location)
     @geolocation = @geolocationObject[0].data['geometry']['location']
     respond_to do |format|

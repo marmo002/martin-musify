@@ -10,7 +10,7 @@ function venueIndexMap() {
 
     coord = {lat: response[0]["lat"], lng: response[0]["lng"]};
 
-    var map = new google.maps.Map(document.getElementById('venues_map'), {
+    googleMap = new google.maps.Map(document.getElementById('venues_map'), {
       center: coord,
       disableDefaultUI: true,
       zoom: 13
@@ -19,7 +19,7 @@ function venueIndexMap() {
 
     response.map(function(venue, i) {
         var marker = new google.maps.Marker({
-          map: map,
+          map: googleMap,
           position: { lat: venue["lat"], lng: venue["lng"] },
           title: venue["venueName"]
          });
@@ -43,10 +43,18 @@ function venueIndexMap() {
          });
 
     });
+    $.ajax({
 
-
-
+      url: '/venues/location',
+      method:'get',
+      dataType: 'JSON'
+    }).done(function(response){
+      clientLocation = response["clientLocation"]
+      var marker = new google.maps.Marker({
+        map: googleMap,
+        position: clientLocation,
+        title: "your location"
+      });
+    })
   })
-
-
 }

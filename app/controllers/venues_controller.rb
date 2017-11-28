@@ -23,6 +23,21 @@ class VenuesController < ApplicationController
     end
   end
 
+  def location
+    @location = session[:postal_code]
+    @geolocationObject = Geocoder.search(@location)
+    @geolocation = @geolocationObject[0].data['geometry']['location']
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          "clientLocation": @geolocation
+
+        }
+      end
+    end
+  end
+
   def show
     @venue = Venue.find(params[:id])
 
