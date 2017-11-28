@@ -124,6 +124,9 @@ class TicketmasterAPI
             event_tm_id: event['id'],
             date:        event['dates']['start']['dateTime'],
           )
+          unless new_event.persisted?
+            binding.pry
+          end
         end
       end
     end

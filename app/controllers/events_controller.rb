@@ -33,7 +33,12 @@ class EventsController < ApplicationController
   end
 
   def create
-    #code
+    @event = Event.new(event_params)
+    @event.user_id = current_user
+
+    if @event.save!
+      redirect_to events_url
+    end
   end
 
   def edit
@@ -41,7 +46,16 @@ class EventsController < ApplicationController
   end
 
   def update
-    #code
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      
+    end
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:name, :date, :artist_id, :venue_id)
   end
 
 end

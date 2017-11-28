@@ -3,7 +3,9 @@
     <% if genre.events.any? %>
       <div class="genre-card col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-3">
         <a href="<%= genre_url(genre) %>"><div class="card bg-dark text-white ">
-          <img class="card-img" src="<%= genre.events.random_event.first.images.sixteen_by_nine.first.url %>" alt="Card image">
+          <% if genre.events.any? %>
+            <img class="card-img" src="<%= genre.events.random_event.first.images.sixteen_by_nine.first.url %>" alt="Card image">
+          <% end %>
           <div class="card-img-overlay">
             <h4 class="card-title genre-title"><%=genre.name%></h4>
           </div>
