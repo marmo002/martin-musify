@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   belongs_to :venue, optional: true
   has_many :images
   has_many :genres, through: :artist
+  belongs_to :user
 
 
   scope :random_event, -> { order("RANDOM()") }
