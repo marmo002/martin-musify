@@ -20,7 +20,7 @@ function eventShowMap() {
       // alert('found postal code:' + document.querySelector('#postal-code-input'));
     }
 
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
       center: coord,
       disableDefaultUI: true,
       zoom: 15
@@ -52,38 +52,28 @@ function eventShowMap() {
 
 }
 
-// var postal_code = document.querySelector("postal_code").value
-// postal_code.addEventListener('click', function(){
-//   if (document.querySelector("postal_code")){
-//     location = response["clientLocation"]
-//   }
-//
-//   var map = new google.maps.Map(document.getElementById('map'), {
-//     center: location,
-//     disableDefaultUI: true,
-//     zoom: 15
-//   });
-// })
-//
-//
-// document.addEventListener("DOMContentLoaded", function() {
-//
-//   (function(window, google){
-//
-//     //map options
-//     var options = {
-//       center: {
-//         lat: 37.791350,
-//         lng: -122.435883
-//       },
-//       zoon: 10
-//     },
-//
-//     element = document.getElementById('map'),
-//     //map
-//     map = new google.maps.Map(element, options);
-//
-//   }(window, google));
-//
-//
-// });
+document.addEventListener("DOMContentLoaded", function(){
+  var formElement = document.querySelector("#map_form form")
+  formElement.addEventListener("submit", function(e){
+    e.preventDefault();
+    var postalCode = document.querySelector("#postal-code-input").value
+
+
+    $.ajax({
+
+      url: '/events/location',
+      method:'post',
+      data: {postal_code: postalCode},
+      dataType: 'JSON'
+    }).done(function(response){
+      clientLocation = response["clientLocation"]
+      console.log(clientLocation)
+      var marker = new google.maps.Marker({
+        map: map,
+        position: clientLocation,
+        title: "your location"
+      });
+
+    })
+  })
+})

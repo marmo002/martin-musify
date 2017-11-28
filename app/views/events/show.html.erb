@@ -1,6 +1,4 @@
 <h1>Show</h1>
-<p> <%= @location %> </p>
-
 <ul>
 <li><%= @event.name %></li>
 <li><%= @event.date %></li>
@@ -29,7 +27,7 @@
 
 <div id="map"></div>
   <div id="map_form"> Enter Postal Code To See Map Location:
-    <%= form_tag event_path, method: :get do %>
+    <%= form_tag events_location_path, method: :post, remote: true do %>
       <div id="form-box">
         <%= label_tag :postal_code %>
         <%= text_field_tag :postal_code, params[:postal_code], id: "postal-code-input" %>
