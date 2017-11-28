@@ -3,27 +3,13 @@
 
 function eventShowMap() {
   // Create a map object and specify the DOM element for display.
-  console.log(document.URL)
   $.ajax({
     url: document.URL,
     method:'GET',
     dataType: 'JSON'
   }).done(function(response){
-    console.log(response);
     coord = {lat: response["lat"], lng: response["lng"]};
 
-
-    var postalCode = document.querySelector('#postal-code-input').value;
-
-    if (postalCode) {
-      console.log("Postal code found:" + postalCode);
-      x = response['clientLocation']
-      // alert('found postal code:' + document.querySelector('#postal-code-input'));
-    }
-
-    map = new google.maps.Map(document.getElementById('map'), {
-
-    
     var styles = [
         {
             "featureType": "all",
@@ -280,7 +266,7 @@ function eventShowMap() {
     ];
 
 
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
       center: coord,
       disableDefaultUI: true,
       zoom: 13,
@@ -329,7 +315,6 @@ document.addEventListener("DOMContentLoaded", function(){
       dataType: 'JSON'
     }).done(function(response){
       clientLocation = response["clientLocation"]
-      console.log(clientLocation)
       var marker = new google.maps.Marker({
         map: map,
         position: clientLocation,
@@ -339,4 +324,3 @@ document.addEventListener("DOMContentLoaded", function(){
     })
   })
 })
-
