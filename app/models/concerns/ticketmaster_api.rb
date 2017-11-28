@@ -11,7 +11,7 @@ class TicketmasterAPI
   end
 
   def call_api
-    url = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=SezXKF8hYiQwriEyIirXVxqAoQO1KQLw&city=Toronto&classificationName=music&size=200"
+    url = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=#{ENV["TM_KEY"]}&city=Toronto&classificationName=music&size=200"
     @result = HTTParty.get(url)
     total_pages =  @result['page']['totalPages']
     page = 0
