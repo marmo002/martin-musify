@@ -1,18 +1,15 @@
-<h1>Venue ShowPage: Displays list of Events for this venue</h1>
+<h1><%= @venue.name%></h1>
 
 <div class="row">
 <div class="col-lg-4">
-  <ul>
-    <li>Venue Name: <%= @venue.name%></li>
-    <li>Venue Address: <%= @venue.address_1%></li>
-    <li><%= @venue.city %></li>
-    <li><%= @venue.province %></li>
-    <li><%= @venue.postal_code %></li>
+    <h2>Address:</h2>
+    <p><%= @venue.address_1%></p>
+    <p><%= @venue.city %>, <%= @venue.province %> <%= @venue.postal_code %></p>
     <% if @venue.phone_number %>
-    <li><%= @venue.phone_number %></li>
+    <h2>Contact Info</h2>
+    <p><%= @venue.phone_number %></p>
     <% end %>
 
-  </ul>
 </div>
 <div class="col-lg-8">
   <% @venue.events.each do |event| %>
