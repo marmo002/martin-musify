@@ -39,7 +39,7 @@ function venueIndexMap() {
          });
 
          marker.addListener('click', function() {
-           infowindow.open(map, marker);
+           infowindow.open(googleMap, marker);
          });
 
     });

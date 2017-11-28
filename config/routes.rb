@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 root "genres#index"
 post "events/location"
 get "venues/location"
+get "genres/location"
 resources :events, only: [:index, :show]
 resources :venues, only: [:index, :show]
 resources :artists, only: [:show]

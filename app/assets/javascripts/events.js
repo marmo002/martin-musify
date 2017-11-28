@@ -266,7 +266,7 @@ function eventShowMap() {
     ];
 
 
-    map = new google.maps.Map(document.getElementById('map'), {
+    googleMap = new google.maps.Map(document.getElementById('map'), {
       center: coord,
       disableDefaultUI: true,
       zoom: 13,
@@ -274,7 +274,7 @@ function eventShowMap() {
     });
 
     var marker = new google.maps.Marker({
-      map: map,
+      map: googleMap,
       position: coord,
       title: response["venueName"]
     });
@@ -291,7 +291,7 @@ function eventShowMap() {
     });
 
     marker.addListener('click', function() {
-      infowindow.open(map, marker);
+      infowindow.open(googleMap, marker);
     });
 
   })
@@ -311,7 +311,7 @@ function eventShowMap() {
     }).done(function(response){
       clientLocation = response["clientLocation"]
       var marker = new google.maps.Marker({
-        map: map,
+        map: googleMap,
         position: clientLocation,
         title: "your location"
       });
