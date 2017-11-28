@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  paginates_per 12
+
   belongs_to :artist, optional: true
   belongs_to :venue, optional: true
   has_many :images
