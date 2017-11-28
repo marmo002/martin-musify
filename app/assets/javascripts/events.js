@@ -296,11 +296,6 @@ function eventShowMap() {
 
   })
 
-
-}
-
-
-document.addEventListener("DOMContentLoaded", function(){
   var formElement = document.querySelector("#map_form form")
   formElement.addEventListener("submit", function(e){
     e.preventDefault();
@@ -323,4 +318,5 @@ document.addEventListener("DOMContentLoaded", function(){
 
     })
   })
-})
+
+}
