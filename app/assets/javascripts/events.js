@@ -133,6 +133,8 @@ function eventShowMap() {
       dataType: 'JSON'
     }).done(function(response){
 
+
+      //WAYPOINTS CREATION
       clientLocation = response["clientLocation"]
       clientLat = response["clientLocation"]["lat"];
       clientLng = response["clientLocation"]["lng"];
@@ -156,31 +158,3 @@ function eventShowMap() {
     })
   })
 }
-
-
-
-
-
-
-
-      // var marker = new google.maps.Marker({
-      //   map: map,
-      //   position: clientLocation,
-      //   title: "your location"
-      // });
-
-
-
-
-
-
-
-
-    //
-
-  //
-  //
-
-
-
-  //WAYPOINTS CREATION
