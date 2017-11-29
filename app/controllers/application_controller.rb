@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def logged_in?
+    session[:id] != nil
+  end
+  helper_method :logged_in?
+
   private
 
   def not_authenticated
