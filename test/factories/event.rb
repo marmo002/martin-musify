@@ -8,6 +8,5 @@ FactoryBot.define do
       artist_id "1"
       venue_id "1"
       user_id "1"
-
    end
 end
