@@ -4,7 +4,6 @@ require 'factory_bot'
 class EventsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index" do
-    event = create(:event)
     venue1 = create(:venue)
     event1 = create(:event)
     event1.venue = venue1
