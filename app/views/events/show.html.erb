@@ -6,7 +6,9 @@
   <% if @event.artist %>
   <p class="lead"><strong>Who's Palying:</strong> <%= link_to @event.artist.name, artist_path(@event.artist) %></p>
   <% end %>
-  <img src="<%= @event.images.four_by_three.first.url %>" alt="<%=@event.name %>">
+  <% if @event.images.any? %>
+    <img src="<%= @event.images.four_by_three.first.url %>" alt="<%=@event.name %>">
+  <% end %>
   <hr class="my-4">
   <% if @event.venue %>
     <p><strong>Where:</strong> <%= link_to @event.venue.name, venue_path(@event.venue) %></p>
@@ -19,7 +21,10 @@
   <p class="lead">
     <p><%= link_to "View all events", events_path %>
       <% if @event.genres.any? %>
-       | <%= link_to "#{@event.genres.first.name} Events", genre_path(@event.genres.first.id) %></p>
+       | <%= link_to "#{@event.genres.first.name} Events", genre_path(@event.genres.first.id) %>
+    <% end %>
+    <% if @event.user == current_user %>
+      | <%= link_to "Edit this event", edit_event_path(@event) %></p>
     <% end %>
   </p>
 </div>

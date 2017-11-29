@@ -10,6 +10,7 @@ class Event < ApplicationRecord
 
   scope :random_event, -> { order("RANDOM()") }
 
+
   def pretty_date
     Time.at(self.date).strftime('%A, %B %d, %Y')
   end

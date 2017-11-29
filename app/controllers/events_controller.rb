@@ -34,7 +34,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.user_id = current_user
+    @event.user = current_user
 
     if @event.save!
       redirect_to events_url
@@ -42,13 +42,20 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
+      @event = Event.find(params[:id])
+    if @event.user == current_user
+
+    else
+      redirect_to event_path(@event), alert: "You are not allowed to modify this event"
+    end
   end
 
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      
+      redirect_to event_path(@event), alert: "#{@event.name} has been updated"
+    else
+      render 'edit', alert: "You must fix errors"
     end
   end
 
