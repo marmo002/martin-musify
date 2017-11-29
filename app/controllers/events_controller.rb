@@ -27,8 +27,41 @@ class EventsController < ApplicationController
       end
     end
   end
+
+  def new
+    @event = Event.new
+  end
+
+  def create
+    @event = Event.new(event_params)
+    @event.user = current_user
+
+    if @event.save!
+      redirect_to events_url
+    end
+  end
+
+  def edit
+      @event = Event.find(params[:id])
+    if @event.user == current_user
+
+    else
+      redirect_to event_path(@event), alert: "You are not allowed to modify this event"
+    end
+  end
+
+
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to event_path(@event), alert: "#{@event.name} has been updated"
+    else
+      render 'edit', alert: "You must fix errors"
+    end
+  end
+  
   def location
-    # if session[:postal_code] == nil
     @location = params[:postal_code]
     session[:postal_code] = params[:postal_code]
     @geolocationObject = Geocoder.search(@location)
@@ -43,4 +76,11 @@ class EventsController < ApplicationController
       end
     end
   end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:name, :date, :artist_id, :venue_id)
+  end
+
 end
