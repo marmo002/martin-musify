@@ -93,14 +93,14 @@ function eventShowMap() {
             }
           ]
 
-    map = new google.maps.Map(document.getElementById('map'), {
+    googleMap = new google.maps.Map(document.getElementById('map'), {
       center: coord,
       disableDefaultUI: true,
       zoom: 13,
       styles: styles
     });
     var marker = new google.maps.Marker({
-      map: map,
+      map: googleMap,
       position: coord,
       title: response["venueName"]
     });
@@ -116,7 +116,7 @@ function eventShowMap() {
     });
 
     marker.addListener('click', function() {
-      infowindow.open(map, marker);
+      infowindow.open(googleMap, marker);
     });
   })
   var formElement = document.querySelector("#map_form form")
@@ -141,7 +141,7 @@ function eventShowMap() {
       var directionsDisplay;
       var directionsService = new google.maps.DirectionsService();
       directionsDisplay = new google.maps.DirectionsRenderer();
-      directionsDisplay.setMap(map);
+      directionsDisplay.setMap(googleMap);
       var start = new google.maps.LatLng(eventLat, eventLng);
       var end = new google.maps.LatLng(clientLat, clientLng);
       var request = {
