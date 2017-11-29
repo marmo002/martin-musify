@@ -5,9 +5,9 @@ class EventsControllerTest < ActionDispatch::IntegrationTest
   
   test "should get index" do
     venue1 = create(:venue)
-    venue2 = create(:venue)
-    event = create(:event)
-    
+    event1 = create(:event)
+    event1.venue = venue1
+    event1.save
     get events_url
     assert_response :success
   end
