@@ -3,7 +3,7 @@
   <div class="container" id="map-form">
     <%= form_tag events_location_path, method: :post, class: "form-inline", remote: true do %>
     <div class="form-group input-group">
-      <%= text_field_tag :postal_code, params[:postal_code], class: "form-control mb-2", placeholder: "Enter Postal Code" %>
+      <%= text_field_tag :postal_code, params[:postal_code], class: "form-control mb-2", placeholder: "Enter Postal Code", id: "postal-code-input" %>
       <%= submit_tag(value = "Save changes", options= {class: "btn btn-primary input-group-addon mb-2"}) %>
     </div>
     <% end %>

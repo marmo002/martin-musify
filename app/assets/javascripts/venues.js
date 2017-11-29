@@ -89,7 +89,7 @@ function venueIndexMap() {
               stylers: [{color: '#17263c'}]
             }
           ]
-    googleMap = new google.maps.Map(document.getElementById('venues_map'), {
+    googleMap = new google.maps.Map(document.getElementById('venues-map'), {
       center: coord,
       disableDefaultUI: true,
       zoom: 13,
