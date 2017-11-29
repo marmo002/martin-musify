@@ -119,7 +119,7 @@ function eventShowMap() {
       infowindow.open(googleMap, marker);
     });
   })
-  var formElement = document.querySelector("#map_form form")
+  var formElement = document.querySelector("#map-form form")
 
   formElement.addEventListener("submit", function(e){
     e.preventDefault();
