@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 root "genres#index"
 
 get "venues/location"
+get "genres/location"
 post "events/location"
 
   
