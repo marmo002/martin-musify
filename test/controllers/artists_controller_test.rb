@@ -1,13 +1,11 @@
 require 'test_helper'
+require 'factory_bot'
 
 class ArtistsControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get artists_index_url
-    assert_response :success
-  end
 
   test "should get show" do
-    get artists_show_url
+    artist = create(:artist)
+    get artist_url(artist)
     assert_response :success
   end
 
