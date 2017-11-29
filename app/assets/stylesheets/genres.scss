@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+#genre-map {
+  margin: 0 auto;
+  width: 95%;
+  height: 350px;
+  margin-bottom: 30px;
+}
 .genre-title {
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 3px;
@@ -11,10 +18,4 @@
 
 .genre-card {
   border: none;
-}
-
-#genre-map {
-  width: 80%;
-  height: 400px;
-  margin: 0 auto 30px;
 }
