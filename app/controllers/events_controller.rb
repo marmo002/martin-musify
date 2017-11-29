@@ -60,7 +60,7 @@ class EventsController < ApplicationController
       render 'edit', alert: "You must fix errors"
     end
   end
-  
+
   def location
     @location = params[:postal_code]
     session[:postal_code] = params[:postal_code]
