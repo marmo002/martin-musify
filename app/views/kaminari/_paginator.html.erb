@@ -1,6 +1,6 @@
 <%= paginator.render do %>
-  <nav class="col-8 offset-2 col-sm-8 offset-sm-2 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2 mx-auto">
-    <ul class="pagination">
+  <nav class="">
+    <ul class="pagination pagination-sm d-flex justify-content-center">
       <%= first_page_tag unless current_page.first? %>
       <%= prev_page_tag unless current_page.first? %>
       <% each_page do |page| %>

@@ -1,5 +1,5 @@
 class Venue < ApplicationRecord
-  paginates_per 12
+  paginates_per 6
   geocoded_by :full_address
   after_validation :geocode
 
