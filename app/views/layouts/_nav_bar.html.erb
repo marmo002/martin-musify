@@ -41,16 +41,9 @@
     </ul>
 
       <!-- My account -->
-      <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
-        <a
-          class=          "nav-link dropdown-toggle"
-          href=           "#"
-          id=             "navbarDropdown"
-          role=           "button"
-          data-toggle=    "dropdown"
-          aria-haspopup=  "true"
-          aria-expanded=  "false">
+        <a class= "nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup= "true" aria-expanded= "false">
           My Account
         </a>
 
@@ -68,7 +61,14 @@
 
       </li>
     </ul>
-
-
+    <%= form_tag(events_path, { :method => :get, class: 'form-inline' } ) do %>
+    <div class="form-group input-group">
+      <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control mb-2'%>
+      <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-success input-group-addon mb-2' %>
+      <% if params[:search]%>
+      <%= link_to 'Clear', events_url, class: 'btn btn-default', role: 'button' %>
+      <% end %>
+    </div>
+    <% end %>
   </div>
 </nav>
