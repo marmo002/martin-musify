@@ -1,0 +1,19 @@
+
+<div class="container my-3 mx-auto">
+  <%= form_for event do |f| %>
+    <div class="form-group">
+      <%= f.text_field :name, {class: "form-control", placeholder: "Enter Event name"} %>
+    </div>
+    <div class="form-group">
+      <%= f.datetime_select :date, min: Date.today, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.collection_select :artist_id, Artist.order(:name), :id, :name, {prompt: "Select Artist"}, {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= f.collection_select :venue_id, Venue.order(:name), :id, :name, {prompt: "Select Venue"}, {class: "form-control"} %>
+    </div>
+    <%= f.submit class: "btn btn-primary" %>
+
+  <% end %>
+</div>
