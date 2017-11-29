@@ -8,8 +8,10 @@ function eventShowMap() {
     method:'GET',
     dataType: 'JSON'
   }).done(function(response){
-    coord = {lat: response["lat"], lng: response["lng"]};
+    eventLat = response["lat"];
+    eventLng = response["lng"];
 
+    var coord = {lat: response["lat"], lng: response["lng"]};
     var styles = [
         {
             "featureType": "all",
@@ -193,7 +195,7 @@ function eventShowMap() {
             "elementType": "geometry.fill",
             "stylers": [
                 {
-                    "color": "#009165"
+                    "color": "#343a40"
                 },
                 {
                     "lightness": 17
@@ -265,58 +267,88 @@ function eventShowMap() {
         }
     ];
 
-
     map = new google.maps.Map(document.getElementById('map'), {
-      center: coord,
+      // center: coord,
       disableDefaultUI: true,
       zoom: 13,
       styles: styles
     });
 
-    var marker = new google.maps.Marker({
-      map: map,
-      position: coord,
-      title: response["venueName"]
-    });
+    var formElement = document.querySelector("#map_form form")
 
-    var contentString = '<div class="content">'+
-            '<h1>'+ response["venueName"] +'</h1> ' +
-            '<p>'+ response["address_1"] + '</p>' +
-            '<p>'+ response["city"] + '</p>' +
-            '<p>'+ response["postal_code"] + '</p>' +
-            '</div>';
+    formElement.addEventListener("submit", function(e){
+      e.preventDefault();
 
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
+      var postalCode = document.querySelector("#postal-code-input").value
 
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
+      $.ajax({
+        url: '/events/location',
+        method:'post',
+        data: {postal_code: postalCode},
+        dataType: 'JSON'
+      }).done(function(response){
 
-  })
+        clientLat = response["clientLocation"]["lat"];
+        clientLng = response["clientLocation"]["lng"];
 
-  var formElement = document.querySelector("#map_form form")
-  formElement.addEventListener("submit", function(e){
-    e.preventDefault();
-    var postalCode = document.querySelector("#postal-code-input").value
+        clientLocation = response["clientLocation"]
 
+        // var marker = new google.maps.Marker({
+        //   map: map,
+        //   position: clientLocation,
+        //   title: "your location"
+        // });
 
-    $.ajax({
-
-      url: '/events/location',
-      method:'post',
-      data: {postal_code: postalCode},
-      dataType: 'JSON'
-    }).done(function(response){
-      clientLocation = response["clientLocation"]
-      var marker = new google.maps.Marker({
-        map: map,
-        position: clientLocation,
-        title: "your location"
-      });
+      })
 
     })
+
+    // var marker = new google.maps.Marker({
+    //   map: map,
+    //   position: coord,
+    //   title: response["venueName"]
+    // });
+    //
+    // var contentString = '<div class="content">'+
+    //         '<h1>'+ response["venueName"] +'</h1> ' +
+    //         '<p>'+ response["address_1"] + '</p>' +
+    //         '<p>'+ response["city"] + '</p>' +
+    //         '<p>'+ response["postal_code"] + '</p>' +
+    //         '</div>';
+    //
+    // var infowindow = new google.maps.InfoWindow({
+    //   content: contentString
+    // });
+    //
+    // marker.addListener('click', function() {
+    //   infowindow.open(map, marker);
+    // });
+
+
+    var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(map);
+
+    var start = new google.maps.LatLng(43.652836, -79.397891);
+    var end = new google.maps.LatLng(eventLat, eventLng);
+
+    var request = {
+      origin: start,
+      destination: end,
+      travelMode: 'WALKING'
+    };
+
+    directionsService.route(request, function(result, status) {
+      if (status == 'OK') {
+        directionsDisplay.setDirections(result);
+      }
+    });
   })
+
+
+
+  //WAYPOINTS CREATION
 
 }
