@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href= "<%= root_path %>" >
     <%= image_tag "Nav-Logo.png", size: "46x40", alt: "Musify Logo", class: "d-inline-block align-top" %>
   </a>
@@ -62,9 +62,9 @@
       </li>
     </ul>
     <%= form_tag(events_path, { :method => :get, class: 'form-inline' } ) do %>
-    <div class="form-group">
-      <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control mr-sm-2 mb-2'%>
-      <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-success mb-2' %>
+    <div class="form-group input-group">
+      <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control mb-2'%>
+      <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-success input-group-addon mb-2' %>
       <% if params[:search]%>
       <%= link_to 'Clear', events_url, class: 'btn btn-default', role: 'button' %>
       <% end %>
