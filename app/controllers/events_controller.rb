@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  protect_from_forgery only: %i(index show)
 
   def index
     if params[:search]
@@ -12,7 +13,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @venue = @event.venue
-
     respond_to do |format|
       format.html
       format.json do
@@ -22,7 +22,7 @@ class EventsController < ApplicationController
           "city": @venue.city,
           "postal_code": @venue.postal_code,
           "lat": @venue.latitude,
-          "lng": @venue.longitude
+          "lng": @venue.longitude,
         }
       end
     end
@@ -50,12 +50,30 @@ class EventsController < ApplicationController
     end
   end
 
+
+
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to event_path(@event), alert: "#{@event.name} has been updated"
     else
       render 'edit', alert: "You must fix errors"
+    end
+  end
+  
+  def location
+    @location = params[:postal_code]
+    session[:postal_code] = params[:postal_code]
+    @geolocationObject = Geocoder.search(@location)
+    @geolocation = @geolocationObject[0].data['geometry']['location']
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          "clientLocation": @geolocation
+
+        }
+      end
     end
   end
 

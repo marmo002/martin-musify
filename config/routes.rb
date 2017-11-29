@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 root "genres#index"
 
+get "venues/location"
+post "events/location"
+
+  
 resources :events, except: :destroy
 resources :venues, only: [:index, :show]
 resources :artists, only: [:show]

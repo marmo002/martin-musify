@@ -1,5 +1,17 @@
 <div class="jumbotron">
   <h1 class="display-3"><%= @event.name %></h1>
+  <div id="map"></div>
+  <div id="map_form"> Enter Postal Code To See Map Location:
+    <%= form_tag events_location_path, method: :post, remote: true do %>
+    <div id="form-box">
+      <%= label_tag :postal_code %>
+      <%= text_field_tag :postal_code, params[:postal_code], id: "postal-code-input" %>
+    </div>
+    <div id="form-submit">
+      <%= submit_tag %>
+    </div>
+    <% end %>
+  </div>
   <% if @event.date %>
   <p class="lead"><strong>When:</strong> <%= @event.pretty_date %> @ <%= @event.pretty_time %></p>
   <% end %>
@@ -9,6 +21,7 @@
   <% if @event.images.any? %>
     <img src="<%= @event.images.four_by_three.first.url %>" alt="<%=@event.name %>">
   <% end %>
+
   <hr class="my-4">
   <% if @event.venue %>
     <p><strong>Where:</strong> <%= link_to @event.venue.name, venue_path(@event.venue) %></p>
@@ -29,5 +42,4 @@
   </p>
 </div>
 
-<div id="map"></div>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["MAPS_KEY"]%>&callback=eventShowMap" async defer></script>
