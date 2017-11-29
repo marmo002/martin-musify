@@ -10,7 +10,7 @@ function venueIndexMap() {
 
     coord = {lat: response[0]["lat"], lng: response[0]["lng"]};
 
-    googleMap = new google.maps.Map(document.getElementById('venues_map'), {
+    googleMap = new google.maps.Map(document.getElementById('venues-map'), {
       center: coord,
       disableDefaultUI: true,
       zoom: 13

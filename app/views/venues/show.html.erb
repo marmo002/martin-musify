@@ -1,21 +1,25 @@
-<h1><%= @venue.name%></h1>
-
-<div class="row">
-<div class="col-lg-4">
-    <h2>Address:</h2>
-    <p><%= @venue.address_1%></p>
-    <p><%= @venue.city %>, <%= @venue.province %> <%= @venue.postal_code %></p>
-    <% if @venue.phone_number %>
-    <h2>Contact Info</h2>
-    <p><%= @venue.phone_number %></p>
-    <% end %>
-
-</div>
-<div class="col-lg-8">
-  <% @venue.events.each do |event| %>
-    <ul class="temp-events">
-      <li><strong><%= event.name %></strong></li>
-      <li><strong>Date: </strong><%= event.pretty_date %> @ <%= event.pretty_time %></li>
-    </ul>
-  <% end %>
+<div class="jumbotron mb-0">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <h1><%= @venue.name %></h1>
+      <h2>Address:</h2>
+      <p><%= @venue.address_1%></p>
+      <p><%= @venue.city %>, <%= @venue.province %> <%= @venue.postal_code %></p>
+      <% if @venue.phone_number %>
+      <h2>Contact Info</h2>
+      <p><%= @venue.phone_number %></p>
+      <% end %>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <h2>Upcoming Events</h2>
+      <ul class="list-group pre-scrollable">
+        <% @venue.events.each do |event| %>
+        <li class="list-group-item">
+          <a href="<%= event_url(event) %>"><%= event.name %></a>
+          <p><%= event.pretty_date %> @ <%= event.pretty_time %></p>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
