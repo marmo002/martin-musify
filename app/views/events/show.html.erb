@@ -36,7 +36,7 @@
             <% if @event.genres.any? %>
             | <%= link_to "#{@event.genres.first.name} Events", genre_path(@event.genres.first.id) %>
             <% end %>
-            <% if @event.user == current_user %>
+            <% if @event.user == current_user && logged_in? %>
             | <%= link_to "Edit this event", edit_event_path(@event) %></p>
             <% end %>
           </p>

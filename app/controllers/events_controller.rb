@@ -43,7 +43,7 @@ class EventsController < ApplicationController
 
   def edit
       @event = Event.find(params[:id])
-    if @event.user == current_user
+    if @event.user == current_user && logged_in?
 
     else
       redirect_to event_path(@event), alert: "You are not allowed to modify this event"
