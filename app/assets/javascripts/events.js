@@ -274,6 +274,35 @@ function eventShowMap() {
       styles: styles
     });
 
+    var formElement = document.querySelector("#map_form form")
+
+    formElement.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      var postalCode = document.querySelector("#postal-code-input").value
+
+      $.ajax({
+        url: '/events/location',
+        method:'post',
+        data: {postal_code: postalCode},
+        dataType: 'JSON'
+      }).done(function(response){
+
+        clientLat = response["clientLocation"]["lat"];
+        clientLng = response["clientLocation"]["lng"];
+
+        clientLocation = response["clientLocation"]
+
+        // var marker = new google.maps.Marker({
+        //   map: map,
+        //   position: clientLocation,
+        //   title: "your location"
+        // });
+
+      })
+
+    })
+
     // var marker = new google.maps.Marker({
     //   map: map,
     //   position: coord,
@@ -303,7 +332,7 @@ function eventShowMap() {
     directionsDisplay.setMap(map);
 
     var start = new google.maps.LatLng(43.652836, -79.397891);
-    var end = new google.maps.LatLng(43.665045, -79.410884);
+    var end = new google.maps.LatLng(eventLat, eventLng);
 
     var request = {
       origin: start,
@@ -318,33 +347,6 @@ function eventShowMap() {
     });
   })
 
-  // var formElement = document.querySelector("#map_form form")
-  //
-  // formElement.addEventListener("submit", function(e){
-  //   e.preventDefault();
-  //
-  //   var postalCode = document.querySelector("#postal-code-input").value
-  //
-  //   $.ajax({
-  //     url: '/events/location',
-  //     method:'post',
-  //     data: {postal_code: postalCode},
-  //     dataType: 'JSON'
-  //   }).done(function(response){
-  //
-  //     clientLat = response["clientLocation"]["lat"];
-  //     clientLng = response["clientLocation"]["lng"];
-  //
-  //     clientLocation = response["clientLocation"]
-  //
-  //     var marker = new google.maps.Marker({
-  //       map: map,
-  //       position: clientLocation,
-  //       title: "your location"
-  //     });
-  //
-  //   })
-  // })
 
 
   //WAYPOINTS CREATION
