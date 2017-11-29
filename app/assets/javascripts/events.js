@@ -11,7 +11,7 @@ function eventShowMap() {
     eventLat = response["lat"];
     eventLng = response["lng"];
 
-    var coord = {lat: response["lat"], lng: response["lng"]};
+    coord = {lat: response["lat"], lng: response["lng"]};
     var styles = [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
             {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -93,88 +93,68 @@ function eventShowMap() {
             }
           ]
 
-    map = new google.maps.Map(document.getElementById('map'), {
-      // center: coord,
+    googleMap = new google.maps.Map(document.getElementById('map'), {
+      center: coord,
       disableDefaultUI: true,
       zoom: 13,
       styles: styles
     });
+    var marker = new google.maps.Marker({
+      map: googleMap,
+      position: coord,
+      title: response["venueName"]
+    });
+    var contentString = '<div class="content">'+
+            '<h1>'+ response["venueName"] +'</h1> ' +
+            '<p>'+ response["address_1"] + '</p>' +
+            '<p>'+ response["city"] + '</p>' +
+            '<p>'+ response["postal_code"] + '</p>' +
+            '</div>';
 
-    var formElement = document.querySelector("#map-form form")
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
 
-    formElement.addEventListener("submit", function(e){
-      e.preventDefault();
-
-      var postalCode = document.querySelector("#postal-code-input").value
-
-      $.ajax({
-        url: '/events/location',
-        method:'post',
-        data: {postal_code: postalCode},
-        dataType: 'JSON'
-      }).done(function(response){
-
-        clientLat = response["clientLocation"]["lat"];
-        clientLng = response["clientLocation"]["lng"];
-
-        clientLocation = response["clientLocation"]
-
-        // var marker = new google.maps.Marker({
-        //   map: map,
-        //   position: clientLocation,
-        //   title: "your location"
-        // });
-
-      })
-
-    })
-
-    // var marker = new google.maps.Marker({
-    //   map: map,
-    //   position: coord,
-    //   title: response["venueName"]
-    // });
-    //
-    // var contentString = '<div class="content">'+
-    //         '<h1>'+ response["venueName"] +'</h1> ' +
-    //         '<p>'+ response["address_1"] + '</p>' +
-    //         '<p>'+ response["city"] + '</p>' +
-    //         '<p>'+ response["postal_code"] + '</p>' +
-    //         '</div>';
-    //
-    // var infowindow = new google.maps.InfoWindow({
-    //   content: contentString
-    // });
-    //
-    // marker.addListener('click', function() {
-    //   infowindow.open(map, marker);
-    // });
-
-
-    var directionsDisplay;
-    var directionsService = new google.maps.DirectionsService();
-
-    directionsDisplay = new google.maps.DirectionsRenderer();
-    directionsDisplay.setMap(map);
-
-    var start = new google.maps.LatLng(43.652836, -79.397891);
-    var end = new google.maps.LatLng(eventLat, eventLng);
-
-    var request = {
-      origin: start,
-      destination: end,
-      travelMode: 'WALKING'
-    };
-
-    directionsService.route(request, function(result, status) {
-      if (status == 'OK') {
-        directionsDisplay.setDirections(result);
-      }
+    marker.addListener('click', function() {
+      infowindow.open(googleMap, marker);
     });
   })
+  var formElement = document.querySelector("#map_form form")
+
+  formElement.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    var postalCode = document.querySelector("#postal-code-input").value
+
+    $.ajax({
+      url: '/events/location',
+      method:'post',
+      data: {postal_code: postalCode},
+      dataType: 'JSON'
+    }).done(function(response){
 
 
+      //WAYPOINTS CREATION
+      clientLocation = response["clientLocation"]
+      clientLat = response["clientLocation"]["lat"];
+      clientLng = response["clientLocation"]["lng"];
+      var directionsDisplay;
+      var directionsService = new google.maps.DirectionsService();
+      directionsDisplay = new google.maps.DirectionsRenderer();
+      directionsDisplay.setMap(googleMap);
+      var start = new google.maps.LatLng(eventLat, eventLng);
+      var end = new google.maps.LatLng(clientLat, clientLng);
+      var request = {
+        origin: start,
+        destination: end,
+        travelMode: 'WALKING'
+      };
 
-  //WAYPOINTS CREATION
-
+      directionsService.route(request, function(result, status) {
+        if (status == 'OK') {
+          directionsDisplay.setDirections(result);
+        }
+      });
+    })
+  })
 }
