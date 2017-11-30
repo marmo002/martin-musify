@@ -14,7 +14,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to 'All Events', events_path, class: "dropdown-item" %>
-          <%= link_to 'Create an Event', new_event_path, class: "dropdown-item" %>
+          <% if logged_in? %>
+            <%= link_to 'Create an Event', new_event_path, class: "dropdown-item" %>
+          <% end %>
         </div>
       </li>
 
