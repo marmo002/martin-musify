@@ -112,7 +112,6 @@ class TicketmasterAPI
 
         venue_tm_id = event['_embedded']['venues'][0]['id']
         artist_tm_id = event['_embedded']['attractions'] && event['_embedded']['attractions'][0]['id']
-        artist_tm_id = event['_embedded']['attractions'] && event['_embedded']['attractions'][0]['id']
         venue = venue_tm_id ? Venue.find_by(venue_tm_id: venue_tm_id) : nil
         artist = artist_tm_id ? Artist.find_by(artist_tm_id: artist_tm_id) : nil
 
@@ -124,9 +123,9 @@ class TicketmasterAPI
             event_tm_id: event['id'],
             date:        event['dates']['start']['dateTime'],
           )
-          unless new_event.persisted?
-            binding.pry
-          end
+          # unless new_event.persisted?
+          #   binding.pry
+          # end
         end
       end
     end
