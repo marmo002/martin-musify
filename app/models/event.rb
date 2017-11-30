@@ -7,8 +7,6 @@ class Event < ApplicationRecord
   has_many :genres, through: :artist
   belongs_to :user, optional: true
 
-  validates :date, presence: true
-  validate :date_must_be_in_future
 
   scope :random_event, -> { order("RANDOM()") }
 
