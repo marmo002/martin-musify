@@ -29,11 +29,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    if !logged_in?
-      redirect_to root_path
-    else      
       @event = Event.new
-    end
   end
 
   def create
