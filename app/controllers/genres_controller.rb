@@ -27,17 +27,20 @@ class GenresController < ApplicationController
       end
     end
   end
+  
   def location
-    @location = session[:postal_code]
-    @geolocationObject = Geocoder.search(@location)
-    @geolocation = @geolocationObject[0].data['geometry']['location']
-    respond_to do |format|
-      format.html
-      format.json do
-        render json: {
-          "clientLocation": @geolocation
+    if params[:postal_code]
+      @location = session[:postal_code]
+      @geolocationObject = Geocoder.search(@location)
+      @geolocation = @geolocationObject[0].data['geometry']['location']
+      respond_to do |format|
+        format.html
+        format.json do
+          render json: {
+            "clientLocation": @geolocation
 
-        }
+          }
+        end
       end
     end
   end

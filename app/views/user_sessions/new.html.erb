@@ -1,6 +1,11 @@
 <h1>Please Login</h1>
 
+
 <div class="container my-3 mx-auto">
+  <% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "alert alert-warning text-center", role: "alert" %>
+  <% end %>
+
   <%= form_tag user_sessions_path, method: :post do %>
   <% flash.each do |name, msg| %>
   <p><%= msg %></p>
@@ -19,4 +24,9 @@
     <%= submit_tag 'Login', class: "btn btn-primary" %>
   </div>
   <% end %>
+
+  <div class="alert alert-info text-center" role="alert">
+    Don't have an account? Register <%= link_to 'here', new_user_path  %>
+  </div>
+
 </div>
