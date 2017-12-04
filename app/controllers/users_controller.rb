@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def profile
+  def show
     if current_user
       @user = current_user
     else
