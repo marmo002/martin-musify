@@ -7,9 +7,6 @@
   <% end %>
 
   <%= form_tag user_sessions_path, method: :post do %>
-  <% flash.each do |name, msg| %>
-  <p><%= msg %></p>
-  <% end %>
   <div class="form-group">
     <%= label_tag :email %>
     <%= email_field_tag :email, nil, class: "form-control"%>

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user != current_user
       redirect_to login_url
-      flash[:notice] = "Your not this user"
+      flash[:notice] = "You're not this user"
     else
       @user = User.find(params[:id])
     end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "Your info has been updated"
-      redirect_to :profile
+      redirect_to user_path(@user)
     else
       flash[:alert] = "review your form"
       render :edit
@@ -35,16 +35,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    if current_user
-      @user = current_user
-    else
-      redirect_to login_url
-    end
+    require_login
+    @user = current_user
   end
 
   private
 
   def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email,:avatar, :password, :password_confirmation)
     end
 end
