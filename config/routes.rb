@@ -7,13 +7,13 @@ get "venues/location"
 get "genres/location"
 post "events/location"
 
-  
+
 resources :events, except: :destroy
 resources :venues, only: [:index, :show]
 resources :artists, only: [:show]
 resources :genres, only: [:index, :show]
 resources :abouts, only: [:index]
-resources :users, only: [:new, :create]
+resources :users, only: [:new, :create, :edit, :update, :show]
 get 'login' => 'user_sessions#new', :as => :login
 delete 'logout' => 'user_sessions#destroy', :as => :logout
 resources :user_sessions, only: [:create]

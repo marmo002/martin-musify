@@ -54,6 +54,7 @@
         <!-- Login/Logout -->
           <% if current_user %>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Logout", :logout, method: :delete, class: "dropdown-item" %>
           </div>
           <% else %>

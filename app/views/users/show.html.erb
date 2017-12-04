@@ -1,0 +1,31 @@
+
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-3">
+      <%= image_tag "http://localhost:3000/assets/martin-d80877590181e7759e847d3dc30e457d923d799dbd20b2f22d3ec4b81c2c996f.jpg", class: "img-thumbnail" %>
+      <h2>Name: <%= @user.name %> </h2>
+      <p>email: <%= @user.email %></p>
+      <%= link_to "Edit", edit_user_path(@user) %>
+
+    </div>
+
+    <div class="col-md-9">
+      <h2>Your events</h2>
+      <% @user.events.each do |event| %>
+      <div>
+        <p>Name: <%= event.name %></p>
+        <p>NaDateme: <%= event.date %></p>
+        <p>Name: <%= event.venue.name %></p>
+
+      </div>
+      <% end %>
+      <hr>
+      <h2>favorites</h2>
+    </div>
+
+  </div>
+
+</div>
