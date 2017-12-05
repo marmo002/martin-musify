@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def logged_in?
-    session[:id] != nil
+    session[:user_id] != nil
   end
   helper_method :logged_in?
 
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    if !current_user
+    if !logged_in?
       not_authenticated
     end
   end

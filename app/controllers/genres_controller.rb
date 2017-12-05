@@ -49,8 +49,7 @@ class GenresController < ApplicationController
     require_login
     @genre = Genre.find(params[:id])
     @user = current_user
-    # binding.pry
-    @user.genres << @genre
+    @genre.users << @user
     redirect_to user_path(current_user), notice: "You have favourite #{@genre.name}"
   end
 end
