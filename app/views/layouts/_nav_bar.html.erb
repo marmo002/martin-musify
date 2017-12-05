@@ -59,11 +59,12 @@
           </div>
           <% else %>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            
             <!-- Button trigger modal -->
-            <a href="<%= new_user_path%>" type="button" class="dropdown-item" data-toggle="modal" data-target="#newUser">Register</a>
-            <a href="<%= login_path%>" type="button" class="dropdown-item" data-toggle="modal" data-target="#session">Log in</a>
             <%#= link_to "Register", new_user_path, {class: "dropdown-item", type: "button", data-toggle: "modal" data-target: "#newUser"}%>
             <%#= link_to "Login", :login, class: "dropdown-item" %>
+            <a href="<%= new_user_path%>" class="dropdown-item" data-toggle="modal" data-target="#newUser">Register</a>
+            <a href="<%= login_path%>" class="dropdown-item" data-toggle="modal" data-target="#session">Log in</a>
           </div>
           <% end %>
 
@@ -73,10 +74,10 @@
     <div class="form-group input-group">
       <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control mb-2'%>
       <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-success input-group-addon mb-2' %>
+    </div>
       <% if params[:search]%>
       <%= link_to 'Clear', events_url, class: 'btn btn-default', role: 'button' %>
       <% end %>
-    </div>
     <% end %>
   </div>
 </nav>
