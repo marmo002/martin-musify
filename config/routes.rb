@@ -11,7 +11,9 @@ post "events/location"
 resources :events, except: :destroy
 resources :venues, only: [:index, :show]
 resources :artists, only: [:show]
-resources :genres, only: [:index, :show]
+resources :genres, only: [:index, :show] do
+  post :favourite, on: :member
+end
 resources :abouts, only: [:index]
 resources :users, only: [:new, :create, :edit, :update, :show]
 get 'login' => 'user_sessions#new', :as => :login
