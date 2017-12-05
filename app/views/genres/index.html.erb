@@ -12,15 +12,17 @@
             <div class="row">
 
               <!-- Genre's name -->
-              <div class="col-10">
+              <div class="col-9">
                 <a href="<%= genre_url(genre) %>"><h4 class="card-title genre-title"><%=genre.name%></h4></a>
               </div>
 
               <!-- Icon-heart -->
-              <div class="col-2">
+              <div class="col-3">
                 <%= form_tag favourite_genre_path(genre) do%>
-                  <label for="favourite-submit"><i class="icon-heart"></i></label>
-                  <%= submit_tag 'Save', id: "favourite-submit" %>
+
+                    <button type="submit" class="btn btn-link" id="icon-button">
+                      <span class="icon-heart"></span>
+                    </button>
                 <% end %>
               </div>
 
