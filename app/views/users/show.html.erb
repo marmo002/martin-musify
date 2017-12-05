@@ -1,28 +1,27 @@
-
-
-<div class="container">
-
+<div class="jumbotron mb-0">
+  <h1 class="display-3">Welcome, <%= @user.name %>!</h1>
+  <p class="lead"><%= link_to "Edit your Profile", edit_user_path(@user) %></p>
+  <hr class="my-4">
   <div class="row">
-
-    <div class="col-md-4">
-      <%= image_tag @user.avatar.url(:medium) %>
-      <h2>Name: <%= @user.name %> </h2>
-      <p>email: <%= @user.email %></p>
-      <%= link_to "Edit", edit_user_path(@user) %>
-
-    </div>
-
-    <div class="col-md-8">
-      <h2>Your events</h2>
-      <% @user.events.each do |event| %>
-        <p>Name: <%= event.name %></p>
-        <p>When: <%= event.pretty_date %> @ <%= event.pretty_time %></p>
-        <p>Name: <%= event.venue.name %></p>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+      <% if @user.avatar.url %>
+        <%= image_tag @user.avatar.url(:medium) %>
       <% end %>
-      <hr>
-      <h2>favorites</h2>
     </div>
-
+    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+      <h1>Favourite Genres</h1>
+      <p>You currently don't have any favourite genres</p>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+      <h1>Events</h1>
+      <ul class="list-group pre-scrollable">
+        <% @user.events.each do |event| %>
+        <li class="list-group-item">
+          <a href="<%= event_url(event) %>"><%= event.name %></a>
+          <p><%= event.pretty_date %> @ <%= event.pretty_time %></p>
+        </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-
 </div>

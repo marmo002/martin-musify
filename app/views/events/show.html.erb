@@ -1,4 +1,10 @@
+
 <div class="jumbotron mb-0">
+  <div class="container my-3 mx-auto">
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "alert alert-warning text-center", role: "alert" %>
+    <% end %>
+  </div>
   <h1 class="display-3"><%= @event.name %></h1>
   <div class="container" id="map-form">
     <%= form_tag events_location_path, method: :post, class: "form-inline", remote: true do %>
@@ -38,7 +44,7 @@
             <% if @event.genres.any? %>
             | <%= link_to "#{@event.genres.first.name} Events", genre_path(@event.genres.first.id) %>
             <% end %>
-            <% if @event.user == current_user && logged_in? %>
+            <% if logged_in? && @event.user == current_user  %>
             | <%= link_to "Edit this event", edit_event_path(@event) %></p>
             <% end %>
           </p>
