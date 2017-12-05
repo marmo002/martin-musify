@@ -1,4 +1,6 @@
 class GenresController < ApplicationController
+  before_action :require_login, only: :favourite
+
   def index
     @genres = Genre.all
   end
@@ -46,7 +48,6 @@ class GenresController < ApplicationController
   end
 
   def favourite
-    require_login
     @genre = Genre.find(params[:id])
     @user = current_user
     @genre.users << @user
