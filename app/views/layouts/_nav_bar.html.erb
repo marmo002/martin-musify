@@ -59,9 +59,10 @@
           </div>
           <% else %>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%#= link_to "Register", new_user_path, {class: "dropdown-item", type: "button", data-toggle: "modal" data-target: "#newUser"}%>
+            <!-- Button trigger modal -->
             <a href="<%= new_user_path%>" type="button" class="dropdown-item" data-toggle="modal" data-target="#newUser">Register</a>
             <a href="<%= login_path%>" type="button" class="dropdown-item" data-toggle="modal" data-target="#session">Log in</a>
+            <%#= link_to "Register", new_user_path, {class: "dropdown-item", type: "button", data-toggle: "modal" data-target: "#newUser"}%>
             <%#= link_to "Login", :login, class: "dropdown-item" %>
           </div>
           <% end %>
@@ -85,12 +86,7 @@
 
 
 
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newUser">
-  Launch demo modal
-</button> -->
-
-<!-- Modal -->
+<!-- Modals -->
 <div class="modal fade" id="newUser" tabindex="-1" role="dialog" aria-labelledby="newUserLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
