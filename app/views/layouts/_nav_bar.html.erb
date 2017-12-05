@@ -14,7 +14,12 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to 'All Events', events_path, class: "dropdown-item" %>
-          <%= link_to 'Create an Event', new_event_path, class: "dropdown-item" %>
+          <!-- Button trigger modal -->
+          <% if !logged_in? %>
+            <a href="<%= new_event_path%>" class="dropdown-item" data-toggle="modal" data-target="#session">Create an Event</a>
+          <% else %>
+            <a href="<%= new_event_path%>" class="dropdown-item" data-toggle="modal" data-target="#newEvent">Create an Event</a>
+          <% end %>
         </div>
       </li>
 
@@ -59,10 +64,8 @@
           </div>
           <% else %>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            
+
             <!-- Button trigger modal -->
-            <%#= link_to "Register", new_user_path, {class: "dropdown-item", type: "button", data-toggle: "modal" data-target: "#newUser"}%>
-            <%#= link_to "Login", :login, class: "dropdown-item" %>
             <a href="<%= new_user_path%>" class="dropdown-item" data-toggle="modal" data-target="#newUser">Register</a>
             <a href="<%= login_path%>" class="dropdown-item" data-toggle="modal" data-target="#session">Log in</a>
           </div>
@@ -83,41 +86,14 @@
 </nav>
 
 
-
-
-
-
 <!-- Modals -->
-<div class="modal fade" id="newUser" tabindex="-1" role="dialog" aria-labelledby="newUserLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="newUserLabel">Create an Account</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= render 'users/user_form', user: User.new %>
-      </div>
-    </div>
-  </div>
-</div>
 
+<%= render 'layouts/new_user_modal' %>
 
+<%= render 'layouts/new_session_modal' %>
 
-<div class="modal fade" id="session" tabindex="-1" role="dialog" aria-labelledby="sessionLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="sessionLabel">Log in</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= render 'user_sessions/new_session_form'%>
-      </div>
-    </div>
-  </div>
-</div>
+<% if !logged_in? %>
+  <%= render 'layouts/new_session_modal' %>
+<% else %>
+  <%= render 'layouts/new_event_modal' %>
+<% end %>
