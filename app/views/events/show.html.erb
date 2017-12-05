@@ -23,7 +23,7 @@
         <p class="lead"><strong>When:</strong> <%= @event.pretty_date %> @ <%= @event.pretty_time %></p>
         <% end %>
         <% if @event.artist %>
-        <p class="lead"><strong>Who's Palying:</strong> <%= link_to @event.artist.name, artist_path(@event.artist) %></p>
+        <p class="lead"><strong>Who's Playing:</strong> <%= link_to @event.artist.name, artist_path(@event.artist) %></p>
         <% end %>
         <% if @event.venue %>
         <p><strong>Where:</strong> <%= link_to @event.venue.name, venue_path(@event.venue) %></p>
