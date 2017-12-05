@@ -13,17 +13,19 @@
 
   <body class="Site">
     <%= render :partial => 'layouts/nav_bar' %>
-    <div class="container">
-      <main class="Site-content row justify-content-md-center">
-        <div class="col col-lg-2">
+    <main class="Site-content">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col col-lg-2">
+          </div>
+          <div class="col-md-auto">
+            <%= yield %>
+          </div>
+          <div class="col col-lg-2">
+          </div>
         </div>
-        <div class="col-md-auto">
-          <%= yield %>
-        </div>
-        <div class="col col-lg-2">
-        </div>
-      </main>
-    </div>
+      </div>
+    </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>

@@ -14,7 +14,9 @@
       <% end %>
       <div class="card-body">
         <h4 class="card-title"><%= venue.name %></h4>
-        <a id="venue<%= venue.id %>" href="<%= venue_path(venue.id) %>" class="btn btn-primary">More Details</a>
+      </div>
+      <div class="card-footer">
+        <a id="venue<%= venue.id %>" href="<%= venue_path(venue.id) %>" class="btn btn-dark">More Details</a>
       </div>
     </div>
   </div>
