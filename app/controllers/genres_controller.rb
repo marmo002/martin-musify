@@ -27,7 +27,7 @@ class GenresController < ApplicationController
       end
     end
   end
-  
+
   def location
     if params[:postal_code]
       @location = session[:postal_code]
@@ -43,5 +43,9 @@ class GenresController < ApplicationController
         end
       end
     end
+  end
+
+  def favourite
+    redirect_to user_path(current_user)
   end
 end
