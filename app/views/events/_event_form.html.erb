@@ -1,5 +1,9 @@
 
 <div class="container my-3 mx-auto">
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "alert alert-warning text-center", role: "alert" %>
+  <% end %>
+
   <%= form_for event, url: events_path, html: { multipart: true } do |f| %>
     <div class="form-group">
       <%= f.text_field :name, {class: "form-control", placeholder: "Enter Event name"} %>
