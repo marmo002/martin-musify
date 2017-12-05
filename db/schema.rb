@@ -52,16 +52,16 @@ ActiveRecord::Schema.define(version: 20171205165804) do
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
-  create_table "favourites", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "genre_id", null: false
-  end
-
   create_table "genres", force: :cascade do |t|
     t.string "genre_tm_id"
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "genres_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "genre_id", null: false
   end
 
   create_table "images", force: :cascade do |t|

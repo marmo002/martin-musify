@@ -46,6 +46,11 @@ class GenresController < ApplicationController
   end
 
   def favourite
-    redirect_to user_path(current_user)
+    require_login
+    @genre = Genre.find(params[:id])
+    @user = current_user
+    # binding.pry
+    @user.genres << @genre
+    redirect_to user_path(current_user), notice: "You have favourite #{@genre.name}"
   end
 end

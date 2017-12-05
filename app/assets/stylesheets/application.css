@@ -42,3 +42,7 @@
 .Site-content {
   flex: 1;
 }
+
+#favourite-submit {
+  display: none;
+}

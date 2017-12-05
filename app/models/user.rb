@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :events
   has_and_belongs_to_many :genres #favourite relationship
+
   validates :email, uniqueness: true
   validates :password, length: {minimum: 8}, on: :create
   validates :password, confirmation: true, on: :create

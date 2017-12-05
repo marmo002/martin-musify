@@ -12,8 +12,9 @@
                 <h4 class="card-title genre-title"><%=genre.name%></h4>
               </div>
               <div class="col-2">
-                <%= form_for genre, url: favourite_genre_path(genre), method: :post do |f| %>
-                  <%= f.submit %>
+                <%= form_tag favourite_genre_path(genre) do%>
+                  <label for="favourite-submit"><i class="icon-heart"></i></label>
+                  <%= submit_tag 'Save', id: "favourite-submit" %>
                 <% end %>
               </div>
             </div>
