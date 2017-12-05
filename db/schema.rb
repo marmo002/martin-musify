@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204202147) do
+ActiveRecord::Schema.define(version: 20171205165804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,11 @@ ActiveRecord::Schema.define(version: 20171204202147) do
     t.datetime "image_updated_at"
     t.index ["artist_id"], name: "index_events_on_artist_id"
     t.index ["venue_id"], name: "index_events_on_venue_id"
+  end
+
+  create_table "favourites", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "genre_id", null: false
   end
 
   create_table "genres", force: :cascade do |t|
