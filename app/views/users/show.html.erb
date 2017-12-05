@@ -8,10 +8,26 @@
         <%= image_tag @user.avatar.url(:medium) %>
       <% end %>
     </div>
+
+    <!-- Favourite Genre -->
     <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
       <h1>Favourite Genres</h1>
-      <p>You currently don't have any favourite genres</p>
+      <ul class="list-group pre-scrollable">
+      <% if @user.genres.any? %>
+        <% @user.genres.uniq.each do |genre| %>
+        <li class="list-group-item">
+          <%= link_to genre.name, genre_path(genre) %>
+        </li>
+        <% end %>
+      <% else %>
+        <li class="list-group-item">
+          <p>You currently don't have any favourite genres</p>
+        </li>
+      <% end %>
+      </ul>
     </div>
+
+    <!-- List of my events -->
     <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
       <h1>Events</h1>
       <ul class="list-group pre-scrollable">

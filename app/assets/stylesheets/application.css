@@ -46,3 +46,10 @@
 #favourite-submit {
   display: none;
 }
+
+.icon-heart {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  border-radius: 3px;
+}
