@@ -20,7 +20,7 @@
     <div class="form-group">
       <%= f.collection_select :venue_id, Venue.order(:name), :id, :name, {prompt: "Select Venue"}, {class: "form-control"} %>
     </div>
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit class: "btn btn-dark" %>
 
   <% end %>
 </div>
