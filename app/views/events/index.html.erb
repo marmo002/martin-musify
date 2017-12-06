@@ -27,4 +27,4 @@
   <% end %>
 </div>
 
-  <%= paginate @events %>
+  <%= paginate @events, window: 1, outer_window: 1, left: 1, right: 1 %>

@@ -23,6 +23,6 @@
   <% end %>
 </div>
 
-<%= paginate @venues %>
+<%= paginate @venues, window: 1, outer_window: 1, left: 1, right: 1 %>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["MAPS_KEY"]%>&callback=venueIndexMap" async defer></script>
