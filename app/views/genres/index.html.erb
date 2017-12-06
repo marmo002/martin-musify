@@ -3,7 +3,7 @@
   <% @genres.random_genres.each do |genre| %>
     <% if genre.events.any? %>
 
-      <!-- Responsive for each card -->
+      <!-- Responsive -->
       <div class="genre-card col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-3">
 
         <div class="card bg-dark text-white ">
@@ -25,18 +25,14 @@
             </div>
 
           <%end%>
-        </div>
+        </div> <!-- End of card -->
 
         <!-- Icon-heart -->
-        <div class="col-3">
-          <%= form_tag favourite_genre_path(genre) do%>
-            <button type="submit" class="btn btn-link" id="icon-button">
-              <span class="icon-heart"></span>
-            </button>
-          <% end %>
-        </div>
+        <%= link_to favourite_genre_path(genre), class: "favourite-heart" do %>
+          <span class="icon-heart"></span>
+        <% end %>
 
-      </div>
+      </div> <!-- End of responsive -->
     <% end %>
   <% end %>
 </div>
