@@ -88,15 +88,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  # Amazon S3 settings for Paperclip uploads
-  config.paperclip_defaults = {
-  storage: :s3,
-  s3_credentials: {
-    bucket: ENV.fetch('musify-bitmaker'),
-    access_key_id: ENV.fetch('AKIAJVBCZSXQJIHWVJGA'),
-    secret_access_key: ENV.fetch('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'),
-    s3_region: ENV.fetch('US East (Ohio)'),
-  }
-}
 end
