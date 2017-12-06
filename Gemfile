@@ -37,7 +37,11 @@ gem 'sidekiq'
 gem 'rufus-scheduler'
 gem 'geocoder'
 gem 'kaminari'
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+
+gem 'fog-aws', '~> 1.4', '>= 1.4.1'
+gem 'mini_magick', '~> 4.8'
+gem 'carrierwave', '~> 1.2', '>= 1.2.1'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

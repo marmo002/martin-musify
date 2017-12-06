@@ -4,9 +4,7 @@
   <hr class="my-4">
   <div class="row">
     <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-      <% if @user.avatar.url %>
-        <%= image_tag @user.avatar.url(:medium) %>
-      <% end %>
+      <%= image_tag @user.avatars.card.url %>
     </div>
 
     <!-- Favourite Genre -->

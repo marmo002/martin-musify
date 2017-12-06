@@ -6,8 +6,6 @@
     <div class="card mb-3">
       <% if event.images.any? %>
         <img class="card-img-top" src="<%= event.images.sixteen_by_nine.first.url %>" alt="Card image cap">
-      <% elsif event.image_file_name != nil%>
-        <%= image_tag event.image.url(:medium), class: "card-img-top" %>
       <% else %>
         <%= image_tag "default-placeholder-1024x1024-960x540.png", class: "card-img-top"%>
       <% end %>
