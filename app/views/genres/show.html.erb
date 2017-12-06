@@ -29,7 +29,4 @@
 </div>
 
 
-<%= paginate @events %>
-
-
-<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["MAPS_KEY"]%>&callback=genreShowMap" async defer></script>
+<%= paginate @events, window: 1, outer_window: 1, left: 1, right: 1 %>
