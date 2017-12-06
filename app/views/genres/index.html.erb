@@ -1,34 +1,41 @@
 <div class="card-deck mt-3">
+
   <% @genres.random_genres.each do |genre| %>
     <% if genre.events.any? %>
+
+      <!-- Responsive for each card -->
       <div class="genre-card col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-3">
 
         <div class="card bg-dark text-white ">
-          <% if genre.events.any? %>
-            <img class="card-img" src="<%= genre.events.joins(:images).random_event.first.images.sixteen_by_nine.first.url %>" alt="Card image">
-          <% end %>
 
-          <div class="card-img-overlay">
-            <div class="row">
+          <!-- The entire card is the link -->
+          <%= link_to genre_path(genre) do %>
+            <% if genre.events.any? %>
+            <!-- Genre's image in 16x9 -->
+              <img class="card-img" src="<%= genre.events.joins(:images).random_event.first.images.sixteen_by_nine.first.url %>" alt="Card image">
+            <% end %>
 
-              <!-- Genre's name -->
-              <div class="col-9">
-                <a href="<%= genre_url(genre) %>"><h4 class="card-title genre-title"><%=genre.name%></h4></a>
+            <div class="card-img-overlay">
+              <div class="row">
+                <!-- Genre's name -->
+                <div class="col-9">
+                  <h4 class="card-title genre-title"><%=genre.name%></h4>
+                </div>
               </div>
-
-              <!-- Icon-heart -->
-              <div class="col-3">
-                <%= form_tag favourite_genre_path(genre) do%>
-
-                    <button type="submit" class="btn btn-link" id="icon-button">
-                      <span class="icon-heart"></span>
-                    </button>
-                <% end %>
-              </div>
-
             </div>
-          </div>
+
+          <%end%>
         </div>
+
+        <!-- Icon-heart -->
+        <div class="col-3">
+          <%= form_tag favourite_genre_path(genre) do%>
+            <button type="submit" class="btn btn-link" id="icon-button">
+              <span class="icon-heart"></span>
+            </button>
+          <% end %>
+        </div>
+
       </div>
     <% end %>
   <% end %>

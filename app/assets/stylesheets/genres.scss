@@ -20,4 +20,10 @@
 
 .genre-card {
   border: none;
+  position: relative;
+}
+div.col-3{
+  position: absolute;
+  top: 5px;
+  right: 30px;
 }
