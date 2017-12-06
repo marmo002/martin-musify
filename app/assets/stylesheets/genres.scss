@@ -22,8 +22,19 @@
   border: none;
   position: relative;
 }
-div.col-3{
+
+.row{
+  position: relative;
+  bottom: 10px;
+  left:-7px;
+}
+
+.favourite-heart{
   position: absolute;
-  top: 5px;
-  right: 30px;
+  top: 15px;
+  right: 45px;
+}
+
+.favourite-heart:hover{
+  text-decoration: none;
 }
