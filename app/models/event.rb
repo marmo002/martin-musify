@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   paginates_per 12
 
-  has_attached_file :image, styles: { medium: "1280x720>", thumb: "640x360>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: { medium: "1280x720>", thumb: "640x360>" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   validates :name, presence: true
 
