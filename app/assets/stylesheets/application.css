@@ -60,3 +60,11 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.favorite {
+  color: red;
+}
+
+.unfavorite {
+  color: white;
+}
