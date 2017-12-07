@@ -1,7 +1,10 @@
 require 'test_helper'
-
+require 'factory_bot'
 class GenreTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  test ""
+
+
+
+
 end
