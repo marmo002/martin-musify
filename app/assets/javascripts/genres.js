@@ -124,7 +124,6 @@ function genreShowMap() {
 
     });
     $.ajax({
-
       url: '/genres/location',
       method:'get',
       dataType: 'JSON'
@@ -137,40 +136,30 @@ function genreShowMap() {
       });
     })
   })
-}
-
+};
 document.addEventListener("DOMContentLoaded", function(){
 
-  var favouriteHeart = document.querySelectorAll('.favourite-heart');
-  console.log(favouriteHeart);
+  var cardDivs = document.querySelector('.card-deck');
 
-  for (var i = 0; i < favouriteHeart.length; i++) {
-
-    favouriteHeart[i].addEventListener('click', function(e){
+  cardDivs.addEventListener('click', function(e){
+    var anchorId = e.target.parentNode.getAttribute('id');
+    if (e.target.classList.contains('favourite')) {
       e.preventDefault();
-      var url = e.target.parentNode.href;
-      console.log("this is the url");
-      console.log(url);
-      var spanClass = e.target;
-      console.log('the spanClass is');
-      console.log(spanClass);
-      console.log("The e.target is " + e.target);
+      e.target.classList.remove('favourite');
+      e.target.classList.add('unfavourite');
 
-      if (e.target.classList.contains('favourite')) {
-        console.log("you just unfavourite the genre");
-        $.ajax({
-          url: url,
-          method: 'DELETE',
-          success: function(response){
-            console.log('successfully unfavourite');
-          }
-        })
+      e.target.parentNode.setAttribute('data-method', 'delete');
+      e.target.parentNode.href = '/genres/'+ anchorId +'/unfavourite';
 
-      } else {
-        console.log("favourited the genre");
-      }
+    }else if (e.target.classList.contains('unfavourite')) {
+      e.preventDefault();
+      e.target.classList.remove('unfavourite');
+      e.target.classList.add('favourite');
 
-    }); // end of adding favouriteHeart event click
-  }
+      e.target.parentNode.setAttribute('data-method', 'post');
+      e.target.parentNode.href = '/genres/'+ anchorId +'/favourite';
+    }
+  });
+
 
 });
