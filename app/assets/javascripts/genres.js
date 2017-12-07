@@ -138,3 +138,18 @@ function genreShowMap() {
     })
   })
 }
+
+// document.addEventListener("DOMContentLoaded", function(){
+//
+//   function addFav(){
+//
+//     $.ajax({
+//       url: '/',
+//       method: 'POST'
+//     }).done(function(data){
+//
+//       var favourite_heart = document.querySelector('.icon-heart favorite');
+//
+//     })
+//   } // end of AddFav
+// });
