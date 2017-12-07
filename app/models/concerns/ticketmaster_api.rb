@@ -30,31 +30,14 @@ class TicketmasterAPI
     response = get_all_results
     response.each do |page|
       page.each do |event|
+        @event = event
         current_artist = event['_embedded']['attractions']
+        genre = event['classifications'][0]['genre']
+        next unless genre
         if current_artist && !Artist.find_by(artist_tm_id: current_artist[0]['id'])
           new_artist = Artist.create(
             name:             current_artist[0]['name'],
             artist_tm_id:     current_artist[0]['id'],
-            # website:          current_artist &&
-            #                   current_artist[0]['externalLinks'] &&
-            #                   current_artist[0]['externalLinks']['homepage'] &&
-            #                   current_artist[0]['externalLinks']['homepage'][0]['url'],
-            # twitter:          current_artist &&
-            #                   current_artist[0]['externalLinks'] &&
-            #                   current_artist[0]['externalLinks']['twitter'] &&
-            #                   current_artist[0]['externalLinks']['twitter'][0]['url'],
-            # youtube:          current_artist &&
-            #                   current_artist[0]['externalLinks'] &&
-            #                   current_artist[0]['externalLinks']['youtube'] &&
-            #                   current_artist[0]['externalLinks']['youtube'][0]['url'],
-            # facebook:         current_artist &&
-            #                   current_artist[0]['externalLinks'] &&
-            #                   current_artist[0]['externalLinks']['facebook'] &&
-            #                   current_artist[0]['externalLinks']['facebook'][0]['url'],
-            # instragram:       current_artist &&
-            #                   current_artist[0]['externalLinks'] &&
-            #                   current_artist[0]['externalLinks']['instagram'] &&
-            #                   current_artist[0]['externalLinks']['instagram'][0]['url'],
               )
               if Genre.find_by(name: event['classifications'][0]['genre']['name']).name == 'Undefined'
                 new_artist.genres << Genre.find_by(name: 'Other')
@@ -154,7 +137,7 @@ class TicketmasterAPI
     response.each do |page|
       page.each do |event|
         current_genre = event['classifications'][0]['genre']
-        if current && !Genre.find_by(name: current_genre['name'])
+        if current_genre && !Genre.find_by(name: current_genre['name'])
           new_genre = Genre.create(
             name:        current_genre['name'],
             genre_tm_id: current_genre['id']
