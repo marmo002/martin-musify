@@ -31,12 +31,12 @@
         <% if current_user && current_user.genres.include?(genre) %>
 
           <%= link_to unfavourite_genre_path(genre), method: :delete, class: "favourite-heart" do %>
-            <span class="icon-heart favorite"></span>
+            <span class="icon-heart favourite"></span>
           <% end %>
 
         <% else %>
           <%= link_to favourite_genre_path(genre), method: :post, class: "favourite-heart" do %>
-            <span class="icon-heart unfavorite"></span>
+            <span class="icon-heart unfavourite"></span>
           <% end %>
 
         <% end %>
