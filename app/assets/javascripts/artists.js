@@ -12,11 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }).done(function(responseData) {
     console.log(responseData);
 
-    var artistImage = document.getElementById('artist-image');
+    var imageColumn = document.getElementById('image-column');
+    var artistImage = document.createElement("img");
     var imageSRC = responseData['artist']['image'][3]['#text'];
 
     artistImage.setAttribute("src", imageSRC);
-
+    artistImage.setAttribute("class", 'img-fluid');
+    imageColumn.appendChild(artistImage)
   })
 
 })
