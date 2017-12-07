@@ -54,6 +54,12 @@
   position: absolute;
   top: 15px;
   right: 45px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+
+.favourite-heart span {
+  background: none;
 }
 
 .favourite-heart:hover{
