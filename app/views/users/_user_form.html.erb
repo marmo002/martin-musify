@@ -1,24 +1,40 @@
-<%= form_for user, { multipart: true } do |f| %>
-<div class="form-group">
-  <%= f.text_field :name, {class: "form-control", placeholder: "Enter name"} %>
-</div>
+<%= form_for(user, html: {multipart: true}) do |f| %>
 
-<div class="form-group">
-  <%= f.email_field :email, {class: "form-control", placeholder: "Enter email"} %>
-</div>
+  <% if user.errors.any? %>
+    <ul>
+      <% user.errors.full_messages.each do |m| %>
+        <div class="alert alert-danger" role="alert">
+          <ul>
+            <%= m %>
+          </ul>
+        </div>
+      <% end %>
+    </ul>
+  <% end %>
 
-<div class="form-group">
-  <%= f.file_field :avatars, class: 'form-control' %>
-</div>
+  <%= form_for user, { multipart: true } do |f| %>
+  <div class="form-group">
+    <%= f.text_field :name, {class: "form-control", placeholder: "Enter name"} %>
+  </div>
 
-<div class="form-group">
-  <%= f.password_field :password, {class: "form-control", placeholder:"Password"} %>
-</div>
+  <div class="form-group">
+    <%= f.email_field :email, {class: "form-control", placeholder: "Enter email"} %>
+  </div>
 
-<div class="form-group">
-  <%= f.password_field :password_confirmation, {class: "form-control", placeholder:"Password Confirmation"}  %>
-</div>
+  <div class="form-group">
+    <%= f.file_field :avatars, class: 'form-control' %>
+  </div>
 
-  <%= f.submit(value = nil, options = {class: "btn btn-dark"})  %>
+  <div class="form-group">
+    <%= f.password_field :password, {class: "form-control", placeholder:"Password"} %>
+  </div>
+
+  <div class="form-group">
+    <%= f.password_field :password_confirmation, {class: "form-control", placeholder:"Password Confirmation"}  %>
+  </div>
+
+    <%= f.submit(value = nil, options = {class: "btn btn-dark"})  %>
+
+  <% end %>
 
 <% end %>
