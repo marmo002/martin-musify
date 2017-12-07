@@ -1,0 +1,2 @@
+class ArtistSocial < ApplicationRecord
+end
