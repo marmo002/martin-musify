@@ -53,4 +53,10 @@ class GenresController < ApplicationController
     @genre.users << @user
     # redirect_to user_path(current_user), notice: "You have favourite #{@genre.name}"
   end
+
+  def unfavourite
+    @genre = Genre.find(params[:id])
+    @user = current_user
+    @user.genres.delete(@genre)
+  end
 end

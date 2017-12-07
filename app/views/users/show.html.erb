@@ -16,9 +16,10 @@
       <h1>Favourite Genres</h1>
       <ul class="list-group pre-scrollable">
       <% if @user.genres.any? %>
-        <% @user.genres.uniq.each do |genre| %>
+        <% @user.genres.each do |genre| %>
         <li class="list-group-item">
           <%= link_to genre.name, genre_path(genre) %>
+          <%= link_to "Delete", unfavourite_genre_path(genre), method: :delete, class:"delete-genre" %>
         </li>
         <% end %>
       <% else %>

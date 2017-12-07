@@ -138,3 +138,39 @@ function genreShowMap() {
     })
   })
 }
+
+document.addEventListener("DOMContentLoaded", function(){
+
+  var favouriteHeart = document.querySelectorAll('.favourite-heart');
+  console.log(favouriteHeart);
+
+  for (var i = 0; i < favouriteHeart.length; i++) {
+
+    favouriteHeart[i].addEventListener('click', function(e){
+      e.preventDefault();
+      var url = e.target.parentNode.href;
+      console.log("this is the url");
+      console.log(url);
+      var spanClass = e.target;
+      console.log('the spanClass is');
+      console.log(spanClass);
+      console.log("The e.target is " + e.target);
+
+      if (e.target.classList.contains('favourite')) {
+        console.log("you just unfavourite the genre");
+        $.ajax({
+          url: url,
+          method: 'DELETE',
+          success: function(response){
+            console.log('successfully unfavourite');
+          }
+        })
+
+      } else {
+        console.log("favourited the genre");
+      }
+
+    }); // end of adding favouriteHeart event click
+  }
+
+});
