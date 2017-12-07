@@ -1,24 +1,20 @@
-<h1>Artists#show</h1>
+<div class="jumbotron mb-0">
+  <h1 class="display-3" id="artist-name"><%= @artist.name %></h1>
 
-<hr>
+  <div class="row">
+    <div class="col">
+      <img class="img-fluid" id="artist-image" src="" alt="<%= @artist.name %>">
+    </div>
+    <div class="col">
+      <h2>Upcoming Events</h2>
+      <% @artist.events.each do |event| %>
+      <ul class="list-group">
+        <li class="list-group-item"> <p><%= link_to event.name, event_path(event) %></p> <p><%= event.pretty_date %> @ <%= event.pretty_time %></p></li>
+      </ul>
+      <% end %>
+    </div>
+    <div class="col">
 
-<ul>
-  <li>Name: <%= @artist.name %></li>
-  <% if @artist.website %>
-  <li>website: <%= @artist.website %></li>
-  <% end %>
-
-  <% if @artist.twitter %>
-    <li>twitter: <%= @artist.twitter %></li>
-  <% end %>
-
-  <% if @artist.youtube %>
-    <li>youtube: <%= @artist.youtube %></li>
-  <% end %>
-  <% if @artist.facebook %>
-    <li>facebook: <%= @artist.facebook %></li>
-  <% end %>
-  <% if @artist.instragram %>
-  <li>instagram: <%= @artist.instragram %></li>
-  <% end %>
-</ul>
+    </div>
+  </div>
+</div>
