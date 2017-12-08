@@ -17,3 +17,47 @@
   text-decoration: none;
   color: white;
 }
+
+
+.icon-heart {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.genre-card {
+  border: none;
+  position: relative;
+}
+
+.row{
+  position: relative;
+  bottom: 10px;
+  left:-7px;
+}
+
+.favourite-heart{
+  position: absolute;
+  top: 15px;
+  right: 45px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+
+.favourite-heart span {
+  background: none;
+}
+
+.favourite-heart:hover{
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.favourite {
+  color: red;
+}
+
+.unfavourite {
+  color: white;
+}
