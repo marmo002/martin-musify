@@ -1,0 +1,167 @@
+/* line 4, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/abouts.scss */
+.picture_div img {
+  filter: grayscale(1);
+}
+
+/* line 8, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/abouts.scss */
+.picture_div img:hover {
+  filter: none;
+}
+/* line 4, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+#map {
+  width: 100%;
+  height: 300px;
+  margin: 30px auto 30px;
+}
+
+/* line 11, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+.content {
+  width: 200px;
+}
+
+/* line 15, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+.content h1 {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+/* line 20, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+.content p {
+  margin-bottom: 2px;
+}
+
+/* line 24, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+.content a {
+  color: green;
+}
+
+/* line 28, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+.content a:hover {
+  color: #28a745;
+  text-decoration: none;
+}
+/* line 6, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+#genre-map {
+  margin: 0 auto;
+  width: 95%;
+  height: 350px;
+  margin-bottom: 30px;
+}
+
+/* line 12, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.genre-title {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
+  padding: 5px;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+}
+
+/* line 22, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.icon-heart {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  border-radius: 3px;
+}
+
+/* line 29, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.genre-card {
+  border: none;
+  position: relative;
+}
+
+/* line 34, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.row {
+  position: relative;
+  bottom: 10px;
+  left: -7px;
+}
+
+/* line 40, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.favourite-heart {
+  position: absolute;
+  top: 15px;
+  right: 45px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+
+/* line 48, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.favourite-heart span {
+  background: none;
+}
+
+/* line 52, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.favourite-heart:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* line 57, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.favourite {
+  color: red;
+}
+
+/* line 61, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.unfavourite {
+  color: white;
+}
+/* line 4, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/users.scss */
+.delete-genre {
+  float: right;
+  color: red;
+}
+/* line 4, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/venues.scss */
+#venues-map {
+  margin: 0 auto;
+  width: 95%;
+  height: 350px;
+  margin-bottom: 30px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
+
+ .Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
+}
+
+ #go-to-top {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: white; /* Set a background color */
+    color: black; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 50%; /* Rounded corners */
+}
+
+#go-to-top:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
