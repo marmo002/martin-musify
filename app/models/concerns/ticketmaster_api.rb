@@ -65,7 +65,7 @@ class TicketmasterAPI
   end
 
   def add_socials(social_links, artist)
-    if social_links['homepage']
+    if social_links['homepage'] && !ArtistSocial.find_by(url: social_links['homepage'][0]['url'])
       new_website = ArtistSocial.create(
         name:             "website",
         url:              social_links['homepage'] &&
@@ -73,7 +73,7 @@ class TicketmasterAPI
         artist_id:        artist.id
       )
     end
-    if social_links['twitter']
+    if social_links['twitter'] && !ArtistSocial.find_by(url: social_links['twitter'][0]['url'])
       new_twitter = ArtistSocial.create(
         name:             "twitter",
         url:              social_links['twitter'] &&
@@ -81,7 +81,7 @@ class TicketmasterAPI
         artist_id:        artist.id
       )
     end
-    if social_links['youtube']
+    if social_links['youtube'] && !ArtistSocial.find_by(url: social_links['youtube'][0]['url'])
       new_youtube = ArtistSocial.create(
         name:             "youtube",
         url:              social_links['youtube'] &&
@@ -89,7 +89,7 @@ class TicketmasterAPI
         artist_id:        artist.id
       )
     end
-    if social_links['facebook']
+    if social_links['facebook'] && !ArtistSocial.find_by(url: social_links['facebook'][0]['url'])
       new_facebook = ArtistSocial.create(
         name:             "facebook",
         url:              social_links['facebook'] &&
@@ -97,7 +97,7 @@ class TicketmasterAPI
         artist_id:        artist.id
       )
     end
-    if social_links['instagram']
+    if social_links['instagram'] && !ArtistSocial.find_by(url: social_links['instagram'][0]['url'])
       new_instagram = ArtistSocial.create(
         name:             "instagram",
         url:              social_links['instagram'] &&

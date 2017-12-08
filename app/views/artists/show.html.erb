@@ -1,11 +1,11 @@
 <div class="jumbotron mb-0">
-  <h1 class="display-3" id="artist-name"><%= @artist.name %></h1>
+  <h1 class="display-3"><%= @artist.name %></h1>
 
   <div class="row">
-    <div class="col">
-      <img class="img-fluid" id="artist-image" src="" alt="<%= @artist.name %>">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+      <img class="img-fluid" src="<%= @src %>" alt="<%= @artist.name %>">
     </div>
-    <div class="col">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
       <h2>Upcoming Events</h2>
       <% @artist.events.each do |event| %>
       <ul class="list-group">
@@ -13,8 +13,28 @@
       </ul>
       <% end %>
     </div>
-    <div class="col">
-
+    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+      <h2>Social Media</h2>
+      <% if @artist.artist_socials.any? %>
+        <% @artist.artist_socials.each do |social| %>
+        <ul class="list-group">
+          <li class="list-group-item text-center">
+            <% if social.name == 'website' %>
+              <%= link_to(social.url, target: "_blank") do %>
+                <i class="icon-globe icon-2x"></i>
+              <% end %>
+            <% end %>
+            <%= link_to(social.url, target: "_blank") do %>
+              <i class="icon-<%= social.name %> icon-2x"></i>
+            <% end %>
+          </li>
+        </ul>
+        <% end %>
+      <% else %>
+        <li class="list-group-item text-center">
+          <p>No links now, sorry for the inconvenience, check again later.</p>
+        </li>
+      <% end %>
     </div>
   </div>
 </div>
