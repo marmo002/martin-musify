@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start 'rails' unless ENV['NO_COVERAGE']
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 

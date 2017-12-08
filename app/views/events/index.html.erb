@@ -7,7 +7,7 @@
       <% if event.images.any? %>
         <img class="card-img-top" src="<%= event.images.sixteen_by_nine.first.url %>" alt="Card image cap">
       <% elsif event.image %>
-        <%= image_tag event.image.card.url, class: "card-img-top" %>
+        <%= image_tag event.image.card.url, class: "card-img-top" unless event.image.card.url.blank? %>
       <% else %>
         <%= image_tag "default-placeholder-1024x1024-960x540.png", class: "card-img-top"%>
       <% end %>
@@ -17,7 +17,7 @@
           <p class="card-text"><small class="text-muted"><%= event.pretty_date %></small></p>
           <p class="card-text"><small class="text-muted"><%= event.pretty_time %></small></p>
         <% end %>
-        <p class="card-text"><small class="text-muted"><%= event.venue.address_1 %></small></p>
+        <p class="card-text"><small class="text-muted"><%= event.venue&.address_1 %></small></p>
       </div>
       <div class="card-footer">
         <a href="<%= event_path(event.id) %>" class="btn btn-dark">More Details</a>

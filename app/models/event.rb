@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   paginates_per 12
 
   validates :name, presence: true
+  validates :venue_id, presence: true
 
   belongs_to :artist, optional: true
   belongs_to :venue, optional: true

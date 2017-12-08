@@ -65,4 +65,9 @@ class EventTest < ActiveSupport::TestCase
       assert_equal event.user, user
     end
 
+    test "event should not save without venue id" do
+      event = build(:event, venue_id: nil)
+      refute event.save
+    end
+
 end
