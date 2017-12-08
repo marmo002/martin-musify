@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require turbolinks
 //= require jquery
 //= require_tree .
 // When the user scrolls down 20px from the top of the document, show the button
