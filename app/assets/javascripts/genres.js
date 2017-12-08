@@ -137,7 +137,7 @@ function genreShowMap() {
     })
   })
 };
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("turbolinks:load", function(){
 console.log("DOMContentLoaded");
   var cardDivs = document.querySelector('.card-deck');
 
