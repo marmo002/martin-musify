@@ -138,11 +138,13 @@ function genreShowMap() {
   })
 };
 document.addEventListener("DOMContentLoaded", function(){
-
+console.log("DOMContentLoaded");
   var cardDivs = document.querySelector('.card-deck');
 
   cardDivs.addEventListener('click', function(e){
+    console.log("click");
     var anchorId = e.target.parentNode.getAttribute('id');
+
     if (e.target.classList.contains('favourite')) {
       e.preventDefault();
       e.target.classList.remove('favourite');
