@@ -34,11 +34,17 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
       <h1>Events</h1>
       <ul class="list-group pre-scrollable">
-        <% @user.events.each do |event| %>
-        <li class="list-group-item">
-          <a href="<%= event_url(event) %>"><%= event.name %></a>
-          <p><%= event.pretty_date %> @ <%= event.pretty_time %></p>
-        </li>
+        <% if @user.events.any? %>
+          <% @user.events.each do |event| %>
+            <li class="list-group-item">
+              <a href="<%= event_url(event) %>"><%= event.name %></a>
+              <p><%= event.pretty_date %> @ <%= event.pretty_time %></p>
+            </li>
+          <% end %>
+        <% else %>
+          <li class="list-group-item">
+            <p>You haven't created any events yet</p>
+          </li>
         <% end %>
       </ul>
     </div>
