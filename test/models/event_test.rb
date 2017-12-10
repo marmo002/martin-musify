@@ -3,7 +3,6 @@ require 'factory_bot'
 
 class EventTest < ActiveSupport::TestCase
   test "date is present" do
-    skip
     event = build(:event, date: nil)
     refute event.valid?
   end
