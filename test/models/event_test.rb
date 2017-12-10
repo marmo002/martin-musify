@@ -3,7 +3,6 @@ require 'factory_bot'
 
 class EventTest < ActiveSupport::TestCase
   test "date is present" do
-    skip
     event = build(:event, date: nil)
     refute event.valid?
   end
@@ -63,6 +62,11 @@ class EventTest < ActiveSupport::TestCase
       event.user = user
 
       assert_equal event.user, user
+    end
+
+    test "event should not save without venue id" do
+      event = build(:event, venue_id: nil)
+      refute event.save
     end
 
 end
