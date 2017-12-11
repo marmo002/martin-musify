@@ -8,7 +8,13 @@ function genreShowMap() {
     method:'GET',
     dataType: 'JSON'
   }).done(function(response){
-    coord = {lat: response[0]["lat"], lng: response[0]["lng"]};
+
+    // STEP 1: SETUP MAP'S COORDINATES AND STYLES
+    coord = {
+      lat: response[0]["lat"],
+      lng: response[0]["lng"]
+    };
+
     var styles = [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
             {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -89,6 +95,8 @@ function genreShowMap() {
               stylers: [{color: '#17263c'}]
             }
           ]
+
+    // STEP 2: GENERATING MAP
     googleMap = new google.maps.Map(document.getElementById('genre-map'), {
       center: coord,
       disableDefaultUI: true,
@@ -96,7 +104,7 @@ function genreShowMap() {
       styles: styles
     });
 
-
+    // STEP 3: GENERATE THE MARKERS AND ITS LOCATION
     response.map(function(venue, i) {
       var marker = new google.maps.Marker({
         map: googleMap,
@@ -106,6 +114,7 @@ function genreShowMap() {
 
        var eventLink = document.getElementById('event'+venue["eventId"]).href
 
+       // STEP 4: DISPLAY POPUP WINDOW CONTENT FOR EACH MARKER WHEN CLICK
        var contentString = '<div class="content">'+
        '<h1>'+ venue["eventName"] +'</h1> ' +
        '<p>'+ venue["address_1"] + '</p>' +
@@ -118,11 +127,14 @@ function genreShowMap() {
          content: contentString
        });
 
+       // STEP 4.1: ADD CLICK EVENT LISTENER
        marker.addListener('click', function() {
          infowindow.open(googleMap, marker);
        });
 
-    });
+    }); // END OF GENERATING MAP AND THE MARKERS FOR EACH EVENT
+
+    // STEP 1: GENERATE USER'S LOCATION
     $.ajax({
       url: '/genres/location',
       method:'get',
@@ -134,9 +146,11 @@ function genreShowMap() {
         position: clientLocation,
         title: "your location"
       });
-    })
+    }) // END OF AJAX REQUEST FOR USER'S LOCATION
   })
-};
+}; // END OF GENRESHOWMAP
+
+// STEP 1: FAVOURITE AND UNFAVOURITE BUTTON
 document.addEventListener("turbolinks:load", function(){
 console.log("DOMContentLoaded");
   var cardDivs = document.querySelector('.card-deck');
@@ -164,4 +178,4 @@ console.log("DOMContentLoaded");
   });
 
 
-});
+}); // END OF FAVOURITE/UNFAVOURITE

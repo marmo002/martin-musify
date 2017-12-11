@@ -26,9 +26,8 @@ class Event < ApplicationRecord
 
   private
 
-  def date_must_be_in_future
-    current = Date.today
-    if date != nil && date <= current
+  def date_cannot_be_in_the_past
+    if date != nil || date <= Time.now
       errors.add(:date, "can't be in the past! You silly")
     end
   end
