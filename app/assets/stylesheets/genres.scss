@@ -10,19 +10,26 @@
   margin-bottom: 30px;
 }
 
+.carousel-item img {
+    opacity: 0.3;
+}
+
+.carousel-item {
+    background: black;
+}
+
 .carousel-caption{
   bottom: 0;
-  background: black;
-  opacity: 0.6;
   top: 0;
   width: 100%;
   left: 0;
-  font-size: 50px;
-  padding: 22% 125px 0;
+  font-size: 1.5rem;
+  padding: 20% 130px 0;
 }
 
 .carousel-caption h3{
-  font-size: 60px;
+  font-size: 4rem;
+  line-height: 1;
 }
 
 .genre-title {
@@ -76,4 +83,26 @@
 
 .unfavourite {
   color: white;
+}
+
+@media ( max-width: 700px ) {
+	/* GENERIC STYLES */
+  *{
+    // border:solid 1px red;
+  }
+
+  .carousel-caption{
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    left: 0;
+    font-size: 1rem;
+    padding: 18% 50px 0;
+  }
+
+  .carousel-caption h3{
+    font-size: 2rem;
+    line-height: 1;
+  }
+
 }
