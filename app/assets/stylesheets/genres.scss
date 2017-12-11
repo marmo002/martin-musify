@@ -9,6 +9,22 @@
   height: 350px;
   margin-bottom: 30px;
 }
+
+.carousel-caption{
+  bottom: 0;
+  background: black;
+  opacity: 0.6;
+  top: 0;
+  width: 100%;
+  left: 0;
+  font-size: 50px;
+  padding-top: 22%;
+}
+
+.carousel-caption h3{
+  font-size: 60px;
+}
+
 .genre-title {
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 3px;
