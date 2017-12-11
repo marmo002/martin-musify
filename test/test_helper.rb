@@ -1,5 +1,14 @@
 require 'simplecov'
-SimpleCov.start 'rails' unless ENV['NO_COVERAGE']
+SimpleCov.start 'rails' do
+  add_filter "/app/channels/application_cable/channel.rb"
+  add_filter "/app/channels/application_cable/connection.rb"
+  add_filter "app/jobs/application_job.rb"
+  add_filter "app/jobs/load_ticketmaster_api_job.rb"
+  add_filter "app/mailers/application_mailer.rb"
+  add_filter "app/models/artist_social.rb"
+  add_filter "app/workers/hard_worker.rb"
+
+end unless ENV['NO_COVERAGE']
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
