@@ -1,26 +1,31 @@
+<div class="container-fluid">
+  <div class="row">
+  <div class="col-md-12">
+      <h1 class="venues-title">Venues</h1>
 
-<h1>Venues</h1>
+      <div id="venues-map"></div>
 
-<div id="venues-map"></div>
-
-<div class="card-deck">
-  <% @venues.each do |venue| %>
-  <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-3 d-flex">
-    <div class="card">
-      <% if venue.venue_images.any? &&  venue.venue_images.venue_sixteen_by_nine.any?%>
-        <img class="card-img-top" src="<%= venue.venue_images.venue_sixteen_by_nine.first.url %>" alt="Card image cap">
-      <% else %>
-        <%= image_tag 'default-placeholder-1024x1024-960x540.png', class: "card-img-top"%>
-      <% end %>
-      <div class="card-body">
-        <h4 class="card-title"><%= venue.name %></h4>
-      </div>
-      <div class="card-footer">
-        <a id="venue<%= venue.id %>" href="<%= venue_path(venue.id) %>" class="btn btn-dark">More Details</a>
+      <div class="card-deck">
+        <% @venues.each do |venue| %>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-3 d-flex">
+          <div class="card">
+            <% if venue.venue_images.any? &&  venue.venue_images.venue_sixteen_by_nine.any?%>
+              <img class="card-img-top" src="<%= venue.venue_images.venue_sixteen_by_nine.first.url %>" alt="Card image cap">
+            <% else %>
+              <%= image_tag 'default-placeholder-1024x1024-960x540.png', class: "card-img-top"%>
+            <% end %>
+            <div class="card-body">
+              <h4 class="card-title"><%= venue.name %></h4>
+            </div>
+            <div class="card-footer">
+              <a id="venue<%= venue.id %>" href="<%= venue_path(venue.id) %>" class="btn btn-dark">More Details</a>
+            </div>
+          </div>
+        </div>
+        <% end %>
       </div>
     </div>
   </div>
-  <% end %>
 </div>
 
 <%= paginate @venues, window: 1, outer_window: 1, left: 1, right: 1 %>
