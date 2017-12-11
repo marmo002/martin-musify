@@ -138,37 +138,6 @@ function genreShowMap() {
   })
 };
 
-
-// document.addEventListener("turbolinks:load", function(){
-//
-// console.log("DOMContentLoaded");
-//   var cardDivs = document.querySelector('.card-deck');
-//
-//   cardDivs.addEventListener('click', function(e){
-//     console.log("click");
-//     var anchorId = e.target.parentNode.getAttribute('id');
-//
-//     if (e.target.classList.contains('favourite')) {
-//       e.preventDefault();
-//       e.target.classList.remove('favourite');
-//       e.target.classList.add('unfavourite');
-//
-//       e.target.parentNode.setAttribute('data-method', 'delete');
-//       e.target.parentNode.href = '/genres/'+ anchorId +'/unfavourite';
-//
-//     }else if (e.target.classList.contains('unfavourite')) {
-//       e.preventDefault();
-//       e.target.classList.remove('unfavourite');
-//       e.target.classList.add('favourite');
-//
-//       e.target.parentNode.setAttribute('data-method', 'post');
-//       e.target.parentNode.href = '/genres/'+ anchorId +'/favourite';
-//     }
-//   });
-//
-// });
-
-
 document.addEventListener("turbolinks:load", function(){
 
   var cardDivs = document.querySelector('.card-deck');
@@ -185,31 +154,26 @@ document.addEventListener("turbolinks:load", function(){
 
       $.ajax({
         url: '/genres/' + anchorId + '/unfavourite',
-        method: "DELETE",
+        method: "GET",
+        dataType: "JSON"
       }).done(function(){
 
         ourTarget.classList.remove('favourite');
         ourTarget.classList.add('unfavourite');
 
-        ourTarget.parentNode.setAttribute('data-method', 'delete');
-        ourTarget.parentNode.href = '/genres/'+ anchorId +'/unfavourite';
-      }).fail(function(){
-        
-      });
+      })
 
     }else if (ourTarget.classList.contains('unfavourite')) {
       e.preventDefault();
 
       $.ajax({
         url: '/genres/' + anchorId + '/favourite',
-        method: "POST",
+        method: "GET",
+        dataType: "JSON"
       }).done(function(){
 
         ourTarget.classList.remove('unfavourite');
         ourTarget.classList.add('favourite');
-
-        ourTarget.parentNode.setAttribute('data-method', 'post');
-        ourTarget.parentNode.href = '/genres/'+ anchorId +'/favourite';
 
       });
 
