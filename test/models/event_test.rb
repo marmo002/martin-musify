@@ -21,6 +21,7 @@ class EventTest < ActiveSupport::TestCase
   test "date cannot be in the past" do
     yesterday = Time.now - 1.day
     event = build(:event, date: yesterday)
+    event.save
     assert event.valid?
   end
 
