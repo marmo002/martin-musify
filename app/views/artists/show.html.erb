@@ -2,39 +2,61 @@
   <h1 class="display-3"><%= @artist.name %></h1>
 
   <div class="row">
+
+    <!-- ARTIST'S IMAGE -->
     <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
       <img class="img-fluid" src="<%= @src %>" alt="<%= @artist.name %>">
     </div>
+
+    <!-- ARTIST'S UPCOMING EVENTS -->
     <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+
       <h2>Upcoming Events</h2>
+
       <% @artist.events.each do |event| %>
+
       <ul class="list-group">
         <li class="list-group-item"> <p><%= link_to event.name, event_path(event) %></p> <p><%= event.pretty_date %> @ <%= event.pretty_time %></p></li>
       </ul>
+
       <% end %>
+
     </div>
+
+    <!-- SOCIAL MEDIA LINK -->
     <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+
       <h2>Social Media</h2>
+
       <% if @artist.artist_socials.any? %>
         <% @artist.artist_socials.each do |social| %>
+
         <ul class="list-group">
+
           <li class="list-group-item text-center">
+
             <% if social.name == 'website' %>
               <%= link_to(social.url, target: "_blank") do %>
                 <i class="icon-globe icon-2x"></i>
               <% end %>
             <% end %>
+
             <%= link_to(social.url, target: "_blank") do %>
               <i class="icon-<%= social.name %> icon-2x"></i>
             <% end %>
           </li>
+
         </ul>
         <% end %>
+
+      <!-- NO INFORMATION ON THE ARTIST   -->
       <% else %>
         <li class="list-group-item text-center">
           <p>No links now, sorry for the inconvenience, check again later.</p>
         </li>
       <% end %>
-    </div>
-  </div>
+
+    </div>    <!-- END OF SOCIAL MEDIA -->
+
+  </div>      <!-- END OF DIV='ROW' -->
 </div>

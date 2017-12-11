@@ -29,8 +29,8 @@ class EventsController < ApplicationController
   end
 
   def new
-      @event = Event.new
-      require_login
+    @event = Event.new
+    require_login
   end
 
   def create
@@ -51,8 +51,6 @@ class EventsController < ApplicationController
     end
   end
 
-
-
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
@@ -68,15 +66,16 @@ class EventsController < ApplicationController
       session[:postal_code] = params[:postal_code]
       @geolocationObject = Geocoder.search(@location)
       @geolocation = @geolocationObject[0].data['geometry']['location']
+
       respond_to do |format|
         format.html
         format.json do
           render json: {
             "clientLocation": @geolocation
-
           }
         end
       end
+
     end
   end
 
