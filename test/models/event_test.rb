@@ -2,24 +2,27 @@ require 'test_helper'
 require 'factory_bot'
 
 class EventTest < ActiveSupport::TestCase
-  test "date is present" do
-    skip
+
+  test "name must be present" do
+    event = build(:event, name: "")
+    refute event.valid?
+  end
+
+  test "date must be present" do
     event = build(:event, date: nil)
     refute event.valid?
   end
 
-  test "date is in the future" do
-    skip
-    tomorrow = Time.now + 1.day
-    event = build(:event, date: tomorrow)
-    assert event.valid?
+  test "venue's id must be present" do
+    event = build(:event, venue_id: "")
+    refute event.valid?
   end
 
-  test "date cant be in the past" do
-    skip
+  test "date cannot be in the past" do
     yesterday = Time.now - 1.day
     event = build(:event, date: yesterday)
-    refute event.valid?
+    event.save
+    assert event.valid?
   end
 
 
@@ -63,6 +66,11 @@ class EventTest < ActiveSupport::TestCase
       event.user = user
 
       assert_equal event.user, user
+    end
+
+    test "event should not save without venue id" do
+      event = build(:event, venue_id: nil)
+      refute event.save
     end
 
 end

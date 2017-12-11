@@ -31,4 +31,18 @@ class UserTest < ActiveSupport::TestCase
     user1 = build(:user, password: '1234', password_confirmation: '1234')
     refute user1.valid?
   end
+
+  test  "user has many events" do
+    event1 = build(:event, id: 1, user_id: 1)
+    event2 = build(:event, id: 2, user_id: 1)
+    user = create(:user)
+    user.events << event1
+    user.events << event2
+
+    assert_equal user.events, [event1, event2]
+
+
+
+  end
+
 end

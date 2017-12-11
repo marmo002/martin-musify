@@ -1,6 +1,4 @@
 class ArtistsController < ApplicationController
-  def index
-  end
 
   def show
     @artist = Artist.find(params[:id])
@@ -9,7 +7,6 @@ class ArtistsController < ApplicationController
 
     response = HTTParty.get("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=#{@artist.name}&api_key=#{token}&format=json")
     body = JSON.parse(response.body)
-
     @src = body['artist']['image'][3]['#text']
 
   end
