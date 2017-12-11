@@ -8,6 +8,7 @@ class EventsController < ApplicationController
     else
       @events = Event.all.page params[:page]
     end
+
   end
 
   def show
@@ -34,9 +35,15 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    date = Time.now
     @event.user = current_user
-
+    @date = params[:date]
+    if @date != nil || @date <= date
+      flash[:alert] = "date can't be in the past! You silly"
+      render :new
+    else
+      @event = Event.new(event_params)
+    end
     if @event.save!
       redirect_to events_url
     end

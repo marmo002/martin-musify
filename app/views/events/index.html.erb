@@ -3,39 +3,42 @@
 <div class="card-deck">
 
   <% @events.each do |event| %>
+    <% if event.date != nil && event.date >= Time.now %>
 
-  <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 d-flex">
 
-    <!-- INDIVIDUAL EVENT SLOT -->
-    <div class="card mb-3">
-      <% if event.images.any? %>
-        <img class="card-img-top" src="<%= event.images.sixteen_by_nine.first.url %>" alt="Card image cap">
-      <% elsif event.image %>
-        <%= image_tag event.image.card.url, class: "card-img-top" unless event.image.card.url.blank? %>
-      <% else %>
-        <%= image_tag "default-placeholder-1024x1024-960x540.png", class: "card-img-top"%>
-      <% end %>
-
-      <!-- EVENT'S DESCRIPTION -->
-      <div class="card-body">
-        <h4 class="card-title"><%= event.name %></h4>
-        <% if event.date %>
-          <p class="card-text"><small class="text-muted"><%= event.pretty_date %></small></p>
-          <p class="card-text"><small class="text-muted"><%= event.pretty_time %></small></p>
+      <!-- INDIVIDUAL EVENT SLOT -->
+      <div class="card mb-3">
+        <% if event.images.any? %>
+          <img class="card-img-top" src="<%= event.images.sixteen_by_nine.first.url %>" alt="Card image cap">
+        <% elsif event.image %>
+          <%= image_tag event.image.card.url, class: "card-img-top" unless event.image.card.url.blank? %>
+        <% else %>
+          <%= image_tag "default-placeholder-1024x1024-960x540.png", class: "card-img-top"%>
         <% end %>
-        <p class="card-text"><small class="text-muted"><%= event.venue&.address_1 %></small></p>
-      </div>
 
-      <!-- EVENT'S BUTTON -->
-      <div class="card-footer">
-        <a href="<%= event_path(event.id) %>" class="btn btn-dark">More Details</a>
+        <!-- EVENT'S DESCRIPTION -->
+        <div class="card-body">
+          <h4 class="card-title"><%= event.name %></h4>
+          <% if event.date %>
+            <p class="card-text"><small class="text-muted"><%= event.pretty_date %></small></p>
+            <p class="card-text"><small class="text-muted"><%= event.pretty_time %></small></p>
+          <% end %>
+          <p class="card-text"><small class="text-muted"><%= event.venue&.address_1 %></small></p>
+        </div>
+
+        <!-- EVENT'S BUTTON -->
+        <div class="card-footer">
+          <a href="<%= event_path(event.id) %>" class="btn btn-dark">More Details</a>
+        </div>
+
       </div>
 
     </div>
 
-  </div>
-
-  <% end %>    <!-- END OF @EVENTS LOOP -->
+  <% end %>
+    <% end %>
+  <!-- END OF @EVENTS LOOP -->
 
 </div>
 
