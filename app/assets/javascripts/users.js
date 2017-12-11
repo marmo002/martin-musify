@@ -7,8 +7,16 @@ document.addEventListener("turbolinks:load", function() {
 
   favouriteGenreGroup.addEventListener('click',function(e) {
     if (e.target.classList.contains('delete-genre')) {
+      var genreID = e.target.id
       e.preventDefault();
-      e.target.parentNode.remove();
+      
+      $.ajax({
+        url: '/genres/' + genreID + '/unfavourite',
+        method: "GET",
+        dataType: "JSON"
+      }).done(function(){
+        e.target.parentNode.remove();
+      });
     }
 
   })

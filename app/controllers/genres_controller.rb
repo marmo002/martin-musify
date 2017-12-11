@@ -36,11 +36,9 @@ class GenresController < ApplicationController
       @geolocationObject = Geocoder.search(@location)
       @geolocation = @geolocationObject[0].data['geometry']['location']
       respond_to do |format|
-        format.html
         format.json do
           render json: {
             "clientLocation": @geolocation
-
           }
         end
       end
@@ -51,11 +49,22 @@ class GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     @user = current_user
     @genre.users << @user
+    respond_to do |format|
+      format.json do
+        render json: nil
+      end
+    end
   end
 
   def unfavourite
     @genre = Genre.find(params[:id])
     @user = current_user
     @user.genres.delete(@genre)
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: nil
+      end
+    end
   end
 end

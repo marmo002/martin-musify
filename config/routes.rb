@@ -12,8 +12,8 @@ resources :events, except: :destroy
 resources :venues, only: [:index, :show]
 resources :artists, only: [:show]
 resources :genres, only: [:index, :show] do
-  post :favourite, on: :member
-  delete :unfavourite, on: :member
+  get :favourite, on: :member
+  get :unfavourite, on: :member
 end
 resources :abouts, only: [:index]
 resources :users, only: [:new, :create, :edit, :update, :show]

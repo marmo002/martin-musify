@@ -19,7 +19,7 @@
         <% @user.genres.each do |genre| %>
         <li class="list-group-item">
           <%= link_to genre.name, genre_path(genre) %>
-          <%= link_to "Delete", unfavourite_genre_path(genre), method: :delete, class:"delete-genre" %>
+          <%= link_to "Delete", "#", class: "delete-genre", id: genre.id %>
         </li>
         <% end %>
       <% else %>
@@ -33,7 +33,7 @@
     <!-- List of my events -->
     <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
       <h1>Events</h1>
-      <ul class="list-group pre-scrollable">
+      <ul class="list-group pre-scrollable events-list">
         <% if @user.events.any? %>
           <% @user.events.each do |event| %>
             <li class="list-group-item">
