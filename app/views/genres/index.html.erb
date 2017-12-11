@@ -28,14 +28,28 @@
         </div> <!-- End of card -->
 
         <!-- Icon-heart -->
+        <%# if current_user && current_user.genres.include?(genre) %>
+
+          <%#= link_to unfavourite_genre_path(genre), method: :delete, class: "favourite-heart", id: genre.id do %>
+            <!-- <span class="icon-heart favourite"></span> -->
+          <%# end %>
+
+        <%# else %>
+          <%#= link_to favourite_genre_path(genre), method: :post, class: "favourite-heart", id: genre.id do %>
+            <!-- <span class="icon-heart unfavourite"></span> -->
+          <%# end %>
+
+        <%# end %>
+
+        <!-- Icon-heart -->
         <% if current_user && current_user.genres.include?(genre) %>
 
-          <%= link_to unfavourite_genre_path(genre), method: :delete, class: "favourite-heart", id: genre.id do %>
+          <%= link_to unfavourite_genre_path(genre), class: "favourite-heart", id: genre.id do %>
             <span class="icon-heart favourite"></span>
           <% end %>
 
         <% else %>
-          <%= link_to favourite_genre_path(genre), method: :post, class: "favourite-heart", id: genre.id do %>
+          <%= link_to favourite_genre_path(genre), class: "favourite-heart", id: genre.id do %>
             <span class="icon-heart unfavourite"></span>
           <% end %>
 
