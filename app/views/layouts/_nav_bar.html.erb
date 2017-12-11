@@ -1,89 +1,92 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href= "<%= root_path %>" >
-    <%= image_tag "Musify.png", size: "50x50", alt: "Musify Logo", class: "d-inline-block align-top" %>
-    <span class="musify-title">MUSIFY</span>
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <div class="container-fluid">
+    <a class="navbar-brand" href= "<%= root_path %>" >
+      <%= image_tag "Musify.png", size: "50x50", alt: "Musify Logo", class: "d-inline-block align-top" %>
+      <span class="musify-title">MUSIFY</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Events
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to 'All Events', events_path, class: "dropdown-item" %>
-          <!-- Button trigger modal -->
-          <% if !logged_in? %>
-            <a href="<%= new_event_path%>" class="dropdown-item" data-toggle="modal" data-target="#session">Create an Event</a>
-          <% else %>
-            <a href="<%= new_event_path%>" class="dropdown-item" data-toggle="modal" data-target="#newEvent">Create an Event</a>
-          <% end %>
-        </div>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="<%= venues_path %>">Venues</a>
-      </li>
-
-      <!-- Genre Dropdown -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Genres
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <% Genre.all.order(:name).each do |genre| %>
-            <% if genre.events.any? %>
-              <%= link_to genre.name, genre_path(genre), class: "dropdown-item" %>
-            <% end %>
-          <% end %>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= abouts_path %>">About</a>
-      </li>
-    </ul>
-
-      <!-- My account -->
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <a class= "nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup= "true" aria-expanded= "false">
-          <% if current_user %>
-            Welcome <%= current_user.name %>
-          <% else %>
-            My Account
-          <% end %>
-        </a>
-
-        <!-- Login/Logout -->
-          <% if current_user %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Events
+          </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Logout", :logout, method: :delete, class: "dropdown-item" %>
-          </div>
-          <% else %>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
+            <%= link_to 'All Events', events_path, class: "dropdown-item" %>
             <!-- Button trigger modal -->
-            <a href="<%= new_user_path%>" class="dropdown-item" data-toggle="modal" data-target="#newUser">Register</a>
-            <a href="<%= login_path%>" class="dropdown-item" data-toggle="modal" data-target="#session">Log in</a>
+            <% if !logged_in? %>
+              <a href="<%= new_event_path%>" class="dropdown-item" data-toggle="modal" data-target="#session">Create an Event</a>
+            <% else %>
+              <a href="<%= new_event_path%>" class="dropdown-item" data-toggle="modal" data-target="#newEvent">Create an Event</a>
+            <% end %>
           </div>
-          <% end %>
+        </li>
 
-      </li>
-    </ul>
-    <%= form_tag(events_path, { :method => :get, class: 'form-inline' } ) do %>
-    <div class="form-group input-group">
-      <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control mb-2'%>
-      <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-success input-group-addon mb-2' %>
-    </div>
-      <% if params[:search]%>
-      <%= link_to 'Clear', events_url, class: 'btn btn-default', role: 'button' %>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= venues_path %>">Venues</a>
+        </li>
+
+        <!-- Genre Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Genres
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% Genre.all.order(:name).each do |genre| %>
+              <% if genre.events.any? %>
+                <%= link_to genre.name, genre_path(genre), class: "dropdown-item" %>
+              <% end %>
+            <% end %>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= abouts_path %>">About</a>
+        </li>
+      </ul>
+
+        <!-- My account -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class= "nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup= "true" aria-expanded= "false">
+            <% if current_user %>
+              Welcome <%= current_user.name %>
+            <% else %>
+              My Account
+            <% end %>
+          </a>
+
+          <!-- Login/Logout -->
+            <% if current_user %>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Logout", :logout, method: :delete, class: "dropdown-item" %>
+            </div>
+            <% else %>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+              <!-- Button trigger modal -->
+              <a href="<%= new_user_path%>" class="dropdown-item" data-toggle="modal" data-target="#newUser">Register</a>
+              <a href="<%= login_path%>" class="dropdown-item" data-toggle="modal" data-target="#session">Log in</a>
+            </div>
+            <% end %>
+
+        </li>
+      </ul>
+      <%= form_tag(events_path, { :method => :get, class: 'form-inline' } ) do %>
+      <div class="form-group input-group">
+        <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control mb-2'%>
+        <%= submit_tag 'Search', name: nil, class: 'btn btn-outline-success input-group-addon mb-2' %>
+      </div>
+        <% if params[:search]%>
+        <%= link_to 'Clear', events_url, class: 'btn btn-default', role: 'button' %>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+    
+  </div> <!-- container-fluid -->
 </nav>
 
 

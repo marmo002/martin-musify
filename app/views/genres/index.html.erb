@@ -38,8 +38,10 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
-<div class="card-deck mt-3">
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-deck mt-3">
 
   <% @genres.random_genres.each do |genre| %>
     <% if genre.events.any? %>
@@ -85,4 +87,7 @@
       </div> <!-- End of responsive -->
     <% end %>
   <% end %>
+</div>
+  </div>
+</div>
 </div>
