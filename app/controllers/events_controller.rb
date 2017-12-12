@@ -36,16 +36,13 @@ class EventsController < ApplicationController
 
   def create
     date = Time.now
+    @event = Event.new(event_params)
     @event.user = current_user
-    @date = params[:date]
-    if @date != nil || @date <= date
-      flash[:alert] = "date can't be in the past! You silly"
-      render :new
-    else
-      @event = Event.new(event_params)
-    end
-    if @event.save!
+    if @event.save
       redirect_to events_url
+    else
+      flash[:alert] = "Please fill out the form"
+      render :new
     end
   end
 
