@@ -1,0 +1,237 @@
+/* line 4, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/abouts.scss */
+.picture_div img {
+  filter: grayscale(1);
+}
+
+/* line 8, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/abouts.scss */
+.picture_div img:hover {
+  filter: none;
+}
+/* line 4, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+#map {
+  width: 100%;
+  height: 300px;
+  margin: 30px auto 30px;
+}
+
+/* line 11, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+.events-title {
+  margin: 35px 0 35px 16px;
+}
+
+/* line 15, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+.content {
+  width: 200px;
+}
+
+/* line 19, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+.content h1 {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+/* line 24, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+.content p {
+  margin-bottom: 2px;
+}
+
+/* line 28, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+.content a {
+  color: green;
+}
+
+/* line 32, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/events.scss */
+.content a:hover {
+  color: #28a745;
+  text-decoration: none;
+}
+/* line 6, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+#genre-map {
+  margin: 0 auto;
+  width: 95%;
+  height: 350px;
+  margin-bottom: 30px;
+}
+
+/* line 13, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.carousel-item img {
+  opacity: 0.3;
+}
+
+/* line 17, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.carousel-item {
+  background: black;
+}
+
+/* line 21, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.carousel-caption {
+  bottom: 0;
+  top: 0;
+  width: 100%;
+  left: 0;
+  font-size: 1.5rem;
+  padding: 20% 130px 0;
+}
+
+/* line 30, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.carousel-caption h3 {
+  font-size: 4rem;
+  line-height: 1;
+}
+
+/* line 35, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.genre-events-title {
+  margin: 20px 0 10px 15px;
+}
+
+/* line 39, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.genre-title {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 3px;
+  padding: 5px;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+}
+
+/* line 49, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.icon-heart {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  border-radius: 3px;
+}
+
+/* line 56, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.genre-card {
+  border: none;
+  position: relative;
+}
+
+/* line 61, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.row {
+  position: relative;
+  bottom: 10px;
+  left: -7px;
+}
+
+/* line 67, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.favourite-heart {
+  position: absolute;
+  top: 15px;
+  right: 45px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+}
+
+/* line 75, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.favourite-heart span {
+  background: none;
+}
+
+/* line 79, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.favourite-heart:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* line 84, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.favourite {
+  color: red;
+}
+
+/* line 88, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+.unfavourite {
+  color: white;
+}
+
+@media (max-width: 700px) {
+  /* GENERIC STYLES */
+  /* line 98, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+  .carousel-caption {
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    left: 0;
+    font-size: 1rem;
+    padding: 18% 50px 0;
+  }
+
+  /* line 107, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/genres.scss */
+  .carousel-caption h3 {
+    font-size: 2rem;
+    line-height: 1;
+  }
+}
+/* line 4, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/users.scss */
+.delete-genre {
+  float: right;
+  color: red;
+}
+
+/* line 9, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/users.scss */
+.favourite-list,
+.events-list {
+  overflow: hidden;
+}
+/* line 4, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/venues.scss */
+#venues-map {
+  margin: 0 auto;
+  width: 95%;
+  height: 350px;
+  margin-bottom: 30px;
+}
+
+/* line 11, /Users/antoniomanzanares/Desktop/bitmaker/projects/Musify/app/assets/stylesheets/venues.scss */
+.venues-title {
+  margin: 35px 0 35px 35px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
+
+.musify-title{
+  line-height: 50px;
+}
+
+ .Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
+}
+
+ #go-to-top {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: white; /* Set a background color */
+    color: black; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 50%; /* Rounded corners */
+}
+
+#go-to-top:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
