@@ -9,7 +9,6 @@
       <div class="card-deck">
 
         <% @events.each do |event| %>
-          <% if event.date != nil && event.date >= Time.now %>
 
             <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-3 d-flex">
 
@@ -39,7 +38,6 @@
 
               </div>
             </div>
-          <% end %>
         <% end %>  <!-- END OF @EVENTS LOOP -->
       </div>
 
