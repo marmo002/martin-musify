@@ -36,6 +36,7 @@ class GenresController < ApplicationController
       @geolocationObject = Geocoder.search(@location)
       @geolocation = @geolocationObject[0].data['geometry']['location']
       respond_to do |format|
+        format.html
         format.json do
           render json: {
             "clientLocation": @geolocation
@@ -61,7 +62,6 @@ class GenresController < ApplicationController
     @user = current_user
     @user.genres.delete(@genre)
     respond_to do |format|
-      format.html
       format.json do
         render json: nil
       end
