@@ -37,7 +37,8 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</div><!-- myCarousel -->
+
 <div class="container-fluid">
 <div class="row">
   <div class="col-md-12">
@@ -45,7 +46,6 @@
 
   <% @genres.random_genres.each do |genre| %>
     <% if genre.events.any? %>
-
       <!-- Responsive -->
       <div class="genre-card col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-3">
 
@@ -67,8 +67,8 @@
               </div>
             </div>
 
-          <%end%>
-        </div> <!-- End of card -->
+        </div> <!-- card -->
+        <%end%>
 
         <!-- Icon-heart -->
         <% if current_user && current_user.genres.include?(genre) %>
