@@ -1,8 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href= "<%= root_path %>" >
-      <%= image_tag "Musify.png", size: "50x50", alt: "Musify Logo", class: "d-inline-block align-top" %>
-    </a>
+    <%= link_to "Musify", root_path, class: "navbar-brand" %>
+    <!-- <a class="navbar-brand" href= "<%= root_path %>" > -->
+      <!-- <%= image_tag "Musify.png", size: "50x50", alt: "Musify Logo", class: "d-inline-block align-top" %> -->
+    <!-- </a> -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,12 +16,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to 'All Events', events_path, class: "dropdown-item" %>
-            <!-- Button trigger modal -->
-            <% if !logged_in? %>
-              <a href="<%= new_event_path%>" class="dropdown-item" data-toggle="modal" data-target="#session">Create an Event</a>
-            <% else %>
-              <a href="<%= new_event_path%>" class="dropdown-item" data-toggle="modal" data-target="#newEvent">Create an Event</a>
-            <% end %>
+            <%= link_to 'Create Event', new_event_path, class: "dropdown-item" %>
           </div>
         </li>
 
@@ -65,10 +61,8 @@
             </div>
             <% else %>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-              <!-- Button trigger modal -->
-              <a href="<%= new_user_path%>" class="dropdown-item" data-toggle="modal" data-target="#newUser">Register</a>
-              <a href="<%= login_path%>" class="dropdown-item" data-toggle="modal" data-target="#session">Log in</a>
+              <%= link_to "Register", new_user_path, class: "dropdown-item" %>
+              <%= link_to "Log in", login_path, class: "dropdown-item" %>
             </div>
             <% end %>
 
@@ -87,16 +81,3 @@
 
   </div> <!-- container-fluid -->
 </nav>
-
-
-<!-- Modals -->
-
-<%= render 'layouts/new_user_modal' %>
-
-<%= render 'layouts/new_session_modal' %>
-
-<% if !logged_in? %>
-  <%= render 'layouts/new_session_modal' %>
-<% else %>
-  <%= render 'layouts/new_event_modal' %>
-<% end %>
